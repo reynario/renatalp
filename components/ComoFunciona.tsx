@@ -35,7 +35,7 @@ export default function ComoFunciona() {
   return (
     <section
       id="como-funciona"
-      className="py-24"
+      className="py-32"
       style={{ backgroundColor: "#F6F2EC" }}
     >
       <div

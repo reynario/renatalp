@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       className="relative flex flex-col justify-center items-center text-center overflow-hidden"
-      style={{ backgroundColor: "#2F2A26", minHeight: "100svh", paddingTop: "6rem", paddingBottom: "6rem" }}
+      style={{ backgroundColor: "#2F2A26", minHeight: "90svh", paddingTop: "4rem", paddingBottom: "4rem" }}
     >
       {/* Textura sutil de fundo */}
       <div

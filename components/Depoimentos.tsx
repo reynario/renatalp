@@ -28,7 +28,7 @@ export default function Depoimentos() {
   return (
     <section
       id="depoimentos"
-      className="py-24"
+      className="py-32"
       style={{ backgroundColor: "#E7DDD1" }}
     >
       <div

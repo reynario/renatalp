@@ -46,7 +46,7 @@ export default function Portfolio() {
   return (
     <section
       id="portfolio"
-      className="py-24"
+      className="py-32"
       style={{ backgroundColor: "#F6F2EC" }}
     >
       <div

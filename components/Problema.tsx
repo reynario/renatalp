@@ -31,7 +31,7 @@ export default function Problema() {
   return (
     <section
       id="problema"
-      className="py-24"
+      className="py-32"
       style={{ backgroundColor: "#2F2A26" }}
     >
       <div

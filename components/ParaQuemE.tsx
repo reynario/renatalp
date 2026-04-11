@@ -11,7 +11,7 @@ export default function ParaQuemE() {
   return (
     <section
       id="para-quem"
-      className="py-24"
+      className="py-32"
       style={{ backgroundColor: "#2F2A26" }}
     >
       <div

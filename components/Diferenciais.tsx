@@ -31,7 +31,7 @@ export default function Diferenciais() {
   return (
     <section
       id="diferenciais"
-      className="py-24"
+      className="py-32"
       style={{ backgroundColor: "#E7DDD1" }}
     >
       <div
@@ -62,7 +62,7 @@ export default function Diferenciais() {
         </div>
 
         {/* Grid 2×2 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px" style={{ backgroundColor: "#C8B5A0" }}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-1" style={{ backgroundColor: "#C8B5A0" }}>
           {cards.map((card, i) => (
             <div
               key={i}

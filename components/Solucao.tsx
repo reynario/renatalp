@@ -4,7 +4,7 @@ export default function Solucao() {
   return (
     <section
       id="sobre"
-      className="py-24"
+      className="py-32"
       style={{ backgroundColor: "#F6F2EC" }}
     >
       <div
