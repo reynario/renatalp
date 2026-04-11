@@ -1,0 +1,19 @@
+services:
+  renata-lp:
+    image: ghcr.io/reynario/renatalp:latest
+    networks:
+      - RNNet
+    deploy:
+      restart_policy:
+        condition: any
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.renata-lp.rule=Host(`renata.rndigitalmidia.com.br`)"
+        - "traefik.http.routers.renata-lp.entrypoints=websecure"
+        - "traefik.http.routers.renata-lp.tls.certresolver=letsencryptresolver"
+        - "traefik.http.routers.renata-lp.service=renata-lp"
+        - "traefik.http.services.renata-lp.loadbalancer.server.port=3000"
+
+networks:
+  RNNet:
+    external: true
