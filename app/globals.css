@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-off-white: #F6F2EC;
+  --color-bege:      #E7DDD1;
+  --color-taupe:     #A8927D;
+  --color-nogueira:  #6B4F3D;
+  --color-bronze:    #B08A63;
+  --color-texto:     #2F2A26;
+
+  --font-garamond:   var(--font-cormorant);
+  --font-sans:       var(--font-montserrat);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #F6F2EC;
+  --foreground: #2F2A26;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+}
+
+p, span, a, li, button {
+  font-family: var(--font-montserrat), sans-serif;
+}
+
+/* Animações */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes line-grow {
+  from { width: 0; }
+  to   { width: 40px; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s ease both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.7s ease both;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+
+/* Linha dourada decorativa */
+.gold-line::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: #B08A63;
+  margin-bottom: 1.25rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #F6F2EC; }
+::-webkit-scrollbar-thumb { background: #B08A63; border-radius: 2px; }
