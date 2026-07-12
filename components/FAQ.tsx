@@ -13,7 +13,7 @@ const perguntas = [
   {
     pergunta: "Você atende projetos online ou em outras cidades?",
     resposta:
-      "Sim. Além dos atendimentos presenciais, trabalho com projetos 100% online — com reuniões por vídeo, projeto 3D e acompanhamento à distância. A qualidade e o cuidado são os mesmos.",
+      "Sim. Além dos atendimentos presenciais, trabalho com projetos 100% online, com reuniões por vídeo, projeto 3D e acompanhamento à distância. A qualidade e o cuidado são os mesmos.",
   },
   {
     pergunta: "Quanto tempo demora um projeto?",
@@ -23,7 +23,7 @@ const perguntas = [
   {
     pergunta: "Preciso reformar tudo para contratar o projeto?",
     resposta:
-      "Não. Muitos projetos são apenas de decoração e reorganização do que já existe — sem quebra-quebra. O projeto se adapta à sua realidade, não o contrário.",
+      "Não. Muitos projetos são apenas de decoração e reorganização do que já existe, sem quebra-quebra. O projeto se adapta à sua realidade, não o contrário.",
   },
   {
     pergunta: "Posso aproveitar móveis que eu já tenho?",
@@ -33,7 +33,7 @@ const perguntas = [
   {
     pergunta: "Posso executar o projeto aos poucos?",
     resposta:
-      "Sim. O projeto é entregue completo e organizado por etapas, para que você possa executar no seu ritmo e dentro do seu orçamento — sem perder a coerência do resultado final.",
+      "Sim. O projeto é entregue completo e organizado por etapas, para que você possa executar no seu ritmo e dentro do seu orçamento, sem perder a coerência do resultado final.",
   },
 ];
 

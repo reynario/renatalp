@@ -4,14 +4,14 @@ import { INSTAGRAM_URL } from "@/lib/constants";
 const depoimentos = [
   {
     texto:
-      "A Renata entendeu exatamente o que eu queria — mesmo quando eu mesma não sabia explicar. O resultado ficou muito acima do que eu imaginava. A sala ficou completamente transformada.",
+      "A Renata entendeu exatamente o que eu queria, mesmo quando eu mesma não sabia explicar. O resultado ficou muito acima do que eu imaginava. A sala ficou completamente transformada.",
     nome: "Camila R.",
     cidade: "São Paulo, SP",
     iniciais: "CR",
   },
   {
     texto:
-      "Já tentei fazer a decoração sozinha por anos e nunca ficava certo. Com a Renata, em três meses o apartamento ficou com cara de revista — mas sem perder a minha identidade.",
+      "Já tentei fazer a decoração sozinha por anos e nunca ficava certo. Com a Renata, em três meses o apartamento ficou com cara de revista, mas sem perder a minha identidade.",
     nome: "Fernanda M.",
     cidade: "Belo Horizonte, MG",
     iniciais: "FM",

@@ -11,7 +11,7 @@ const cards = [
     numero: "02",
     titulo: "Sensação real de acolhimento",
     descricao:
-      "Seu lar deve abraçar quem entra nele. Cada decisão de projeto é guiada por como o espaço vai fazer você se sentir — não apenas parecer bonito.",
+      "Seu lar deve abraçar quem entra nele. Cada decisão de projeto é guiada por como o espaço vai fazer você se sentir, não apenas parecer bonito.",
   },
   {
     numero: "03",
@@ -23,7 +23,7 @@ const cards = [
     numero: "04",
     titulo: "Valorização do imóvel",
     descricao:
-      "Um interior bem projetado eleva o padrão percebido do imóvel — e do estilo de vida de quem vive nele. É um investimento que se vê e se sente.",
+      "Um interior bem projetado eleva o padrão percebido do imóvel e do estilo de vida de quem vive nele. É um investimento que se vê e se sente.",
   },
 ];
 

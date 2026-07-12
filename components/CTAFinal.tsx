@@ -37,7 +37,7 @@ export default function CTAFinal() {
               style={{ color: "#D4C5B0", fontFamily: "var(--font-montserrat)", fontWeight: 300 }}
             >
               Vamos conversar sobre o seu projeto. Sem compromisso,
-              sem julgamento — só clareza sobre o que é possível para o seu espaço.
+              sem julgamento, só clareza sobre o que é possível para o seu espaço.
             </p>
 
             <a
@@ -74,7 +74,7 @@ export default function CTAFinal() {
               </p>
               <p
                 className="text-xs tracking-[0.25em] uppercase mt-1"
-                style={{ color: "#6B4F3D", fontFamily: "var(--font-montserrat)" }}
+                style={{ color: "#B08A63", fontFamily: "var(--font-montserrat)" }}
               >
                 Design de Interiores
               </p>
@@ -111,10 +111,10 @@ export default function CTAFinal() {
             className="mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs"
             style={{ borderTop: "1px solid #3D3530" }}
           >
-            <p style={{ color: "#4A3B32", fontFamily: "var(--font-montserrat)" }}>
+            <p style={{ color: "#A8927D", fontFamily: "var(--font-montserrat)" }}>
               © {new Date().getFullYear()} Renata Fidelis Design de Interiores. Todos os direitos reservados.
             </p>
-            <p style={{ color: "#4A3B32", fontFamily: "var(--font-montserrat)" }}>
+            <p style={{ color: "#A8927D", fontFamily: "var(--font-montserrat)" }}>
               Elegância. Conforto. Funcionalidade.
             </p>
           </div>

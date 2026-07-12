@@ -2,7 +2,7 @@ import Reveal from "@/components/Reveal";
 
 const perfis = [
   "Você valoriza estética, mas não quer abrir mão do conforto no dia a dia",
-  "Sente que seu espaço não reflete quem você é — e isso te incomoda",
+  "Sente que seu espaço não reflete quem você é, e isso te incomoda",
   "Quer tomar decisões com segurança, sem ficar perdida em referências infinitas",
   "Busca um projeto duradouro, não modas que envelhecem em dois anos",
 ];
@@ -47,7 +47,7 @@ export default function ParaQuemE() {
               style={{ color: "#A8927D", fontFamily: "var(--font-montserrat)", fontWeight: 300 }}
             >
               Não precisa ter um orçamento milionário, nem saber exatamente o que quer.
-              Precisa querer um espaço que funcione para a sua vida — com beleza e intenção.
+              Precisa querer um espaço que funcione para a sua vida, com beleza e intenção.
             </p>
           </div>
           </Reveal>
@@ -84,11 +84,11 @@ export default function ParaQuemE() {
               style={{
                 fontFamily: "var(--font-cormorant)",
                 fontSize: "1.1rem",
-                color: "#6B4F3D",
+                color: "#B08A63",
                 fontStyle: "italic",
               }}
             >
-              Se você se viu em ao menos um desses pontos — este projeto pode ser seu.
+              Se você se viu em ao menos um desses pontos, este projeto pode ser seu.
             </p>
           </div>
           </Reveal>

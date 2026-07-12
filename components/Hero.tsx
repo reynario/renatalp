@@ -69,7 +69,7 @@ export default function Hero() {
           className="animate-fade-up text-sm tracking-wide leading-loose max-w-xl mx-auto mb-12"
           style={{ color: "#E7DDD1", fontFamily: "var(--font-montserrat)", fontWeight: 300, animationDelay: "0.35s" }}
         >
-          Projetos de interiores que unem sofisticação e acolhimento —
+          Projetos de interiores que unem sofisticação e acolhimento,
           pensados para a vida real, não apenas para a fotografia.
         </p>
 

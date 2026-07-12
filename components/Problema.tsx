@@ -4,7 +4,7 @@ const dores = [
   {
     titulo: "Tela fantasma",
     descricao:
-      "Você entra no cômodo e sente que algo está errado — mas não consegue apontar o quê.",
+      "Você entra no cômodo e sente que algo está errado, mas não consegue apontar o quê.",
   },
   {
     titulo: "Meses sem identidade",
@@ -61,7 +61,7 @@ export default function Problema() {
               >
                 <div
                   className="mb-4"
-                  style={{ color: "#6B4F3D", fontFamily: "var(--font-cormorant)", fontSize: "1.5rem" }}
+                  style={{ color: "#8C7260", fontFamily: "var(--font-cormorant)", fontSize: "1.5rem" }}
                 >
                   {String(i + 1).padStart(2, "0")}
                 </div>
@@ -99,7 +99,7 @@ export default function Problema() {
             >
               O problema não é o espaço.{" "}
               <em style={{ color: "#B08A63" }}>
-                É a falta de um projeto que te dê clareza — e liberdade para finalmente viver.
+                É a falta de um projeto que te dê clareza e liberdade para finalmente viver.
               </em>
             </p>
           </div>

@@ -96,7 +96,7 @@ export default function Solucao() {
                   relacionamentos e trazer leveza para o dia a dia.
                 </p>
                 <p>
-                  Minha abordagem une estética refinada com funcionalidade real —
+                  Minha abordagem une estética refinada com funcionalidade real,
                   porque beleza que não serve para viver não é beleza, é cenário.
                 </p>
                 <p>
@@ -114,7 +114,7 @@ export default function Solucao() {
                   borderLeft: "2px solid #B08A63",
                 }}
               >
-                &ldquo;Elegância, conforto e funcionalidade — no espaço certo para você.&rdquo;
+                &ldquo;Elegância, conforto e funcionalidade, no espaço certo para você.&rdquo;
               </blockquote>
             </div>
           </Reveal>
