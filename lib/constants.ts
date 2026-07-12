@@ -5,7 +5,7 @@ export const INSTAGRAM_URL = "https://www.instagram.com/renatafidelis80/";
 
 export const INSTAGRAM_HANDLE = "@renatafidelis80";
 
-export const EMAIL = "contato@renatafidelis.com.br";
+export const EMAIL = "renatafidelis80@gmail.com";
 
 // Atualize para o domínio final quando publicar (ex.: https://renatafidelis.com.br)
 export const SITE_URL = "https://renatalp.workers.dev";
