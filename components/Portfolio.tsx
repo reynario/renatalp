@@ -125,7 +125,7 @@ function CarrosselProjeto({ projeto, indice }: { projeto: (typeof projetos)[numb
             type="button"
             onClick={anterior}
             aria-label={`Foto anterior de ${projeto.ambiente}`}
-            className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-[#2F2A26]/50 text-[#F6F2EC] opacity-70 transition-all duration-300 hover:bg-[#2F2A26]/80 md:opacity-0 md:group-hover:opacity-100"
+            className="absolute left-1 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#2F2A26]/50 text-[#F6F2EC] opacity-70 transition-all duration-300 hover:bg-[#2F2A26]/80 md:opacity-0 md:group-hover:opacity-100"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M15 18l-6-6 6-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -135,7 +135,7 @@ function CarrosselProjeto({ projeto, indice }: { projeto: (typeof projetos)[numb
             type="button"
             onClick={proxima}
             aria-label={`Próxima foto de ${projeto.ambiente}`}
-            className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-[#2F2A26]/50 text-[#F6F2EC] opacity-70 transition-all duration-300 hover:bg-[#2F2A26]/80 md:opacity-0 md:group-hover:opacity-100"
+            className="absolute right-1 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-[#2F2A26]/50 text-[#F6F2EC] opacity-70 transition-all duration-300 hover:bg-[#2F2A26]/80 md:opacity-0 md:group-hover:opacity-100"
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -143,16 +143,20 @@ function CarrosselProjeto({ projeto, indice }: { projeto: (typeof projetos)[numb
           </button>
 
           {/* Indicadores */}
-          <div className="absolute bottom-20 left-1/2 flex -translate-x-1/2 gap-2">
+          <div className="absolute bottom-[4.5rem] left-1/2 flex -translate-x-1/2">
             {projeto.imagens.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setAtual(i)}
                 aria-label={`Ir para a foto ${i + 1} de ${projeto.ambiente}`}
-                className="h-1.5 w-1.5 rounded-full transition-colors duration-300"
-                style={{ backgroundColor: i === atual ? "#B08A63" : "rgba(246,242,236,0.45)" }}
-              />
+                className="flex h-7 w-7 items-center justify-center"
+              >
+                <span
+                  className="h-1.5 w-1.5 rounded-full transition-colors duration-300"
+                  style={{ backgroundColor: i === atual ? "#B08A63" : "rgba(246,242,236,0.45)" }}
+                />
+              </button>
             ))}
           </div>
         </>
