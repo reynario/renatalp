@@ -1,4 +1,4 @@
-"use client";
+import Reveal from "@/components/Reveal";
 
 const perfis = [
   "Você valoriza estética, mas não quer abrir mão do conforto no dia a dia",
@@ -20,6 +20,7 @@ export default function ParaQuemE() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           {/* Texto esquerdo */}
+          <Reveal>
           <div>
             <div className="h-px w-10 mb-6" style={{ backgroundColor: "#B08A63" }} />
             <p
@@ -49,8 +50,10 @@ export default function ParaQuemE() {
               Precisa querer um espaço que funcione para a sua vida — com beleza e intenção.
             </p>
           </div>
+          </Reveal>
 
           {/* Lista de perfis */}
+          <Reveal delay={120}>
           <div className="space-y-6">
             {perfis.map((perfil, i) => (
               <div
@@ -88,6 +91,7 @@ export default function ParaQuemE() {
               Se você se viu em ao menos um desses pontos — este projeto pode ser seu.
             </p>
           </div>
+          </Reveal>
         </div>
       </div>
     </section>

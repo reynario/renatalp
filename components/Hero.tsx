@@ -1,11 +1,27 @@
-"use client";
-
 export default function Hero() {
   return (
     <section
       className="relative flex flex-col justify-center items-center text-center overflow-hidden"
-      style={{ backgroundColor: "#2F2A26", minHeight: "90svh", paddingTop: "4rem", paddingBottom: "4rem" }}
+      style={{ backgroundColor: "#2F2A26", minHeight: "100svh", paddingTop: "6rem", paddingBottom: "4rem" }}
     >
+      {/* Imagem de fundo — salve a foto em public/images/hero.jpg.
+          Se o arquivo não existir, o fundo escuro com textura continua aparecendo. */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        aria-hidden="true"
+      />
+
+      {/* Overlay escuro para legibilidade do texto sobre a foto */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(47,42,38,0.82) 0%, rgba(47,42,38,0.62) 50%, rgba(47,42,38,0.85) 100%)",
+        }}
+        aria-hidden="true"
+      />
+
       {/* Textura sutil de fundo */}
       <div
         className="absolute inset-0 opacity-10"
@@ -15,18 +31,8 @@ export default function Hero() {
         }}
       />
 
-      {/* Grade decorativa */}
-      <div
-        className="absolute inset-0 opacity-5"
-        style={{
-          backgroundImage: `linear-gradient(#B08A63 1px, transparent 1px),
-                            linear-gradient(90deg, #B08A63 1px, transparent 1px)`,
-          backgroundSize: "80px 80px",
-        }}
-      />
-
       {/* Ornamento superior */}
-      <div className="absolute top-12 left-1/2 -translate-x-1/2 flex items-center gap-4 animate-fade-in">
+      <div className="absolute top-24 left-1/2 -translate-x-1/2 flex items-center gap-4 animate-fade-in">
         <div className="h-px w-16" style={{ backgroundColor: "#B08A63" }} />
         <span
           className="text-xs tracking-[0.3em] uppercase"
@@ -74,41 +80,15 @@ export default function Hero() {
         >
           <a
             href="#cta"
-            className="px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300"
-            style={{
-              backgroundColor: "#6B4F3D",
-              color: "#F6F2EC",
-              fontFamily: "var(--font-montserrat)",
-              fontWeight: 500,
-              letterSpacing: "0.15em",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#B08A63";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#6B4F3D";
-            }}
+            className="bg-[#6B4F3D] px-10 py-4 text-sm tracking-[0.15em] uppercase text-[#F6F2EC] transition-colors duration-300 hover:bg-[#B08A63]"
+            style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500 }}
           >
             Quero meu projeto
           </a>
           <a
             href="#portfolio"
-            className="px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300"
-            style={{
-              border: "1px solid #B08A63",
-              color: "#B08A63",
-              fontFamily: "var(--font-montserrat)",
-              fontWeight: 500,
-              letterSpacing: "0.15em",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#B08A63";
-              (e.currentTarget as HTMLAnchorElement).style.color = "#2F2A26";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.backgroundColor = "transparent";
-              (e.currentTarget as HTMLAnchorElement).style.color = "#B08A63";
-            }}
+            className="border border-[#B08A63] px-10 py-4 text-sm tracking-[0.15em] uppercase text-[#B08A63] transition-colors duration-300 hover:bg-[#B08A63] hover:text-[#2F2A26]"
+            style={{ fontFamily: "var(--font-montserrat)", fontWeight: 500 }}
           >
             Ver portfólio
           </a>

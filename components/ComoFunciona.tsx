@@ -1,4 +1,4 @@
-"use client";
+import Reveal from "@/components/Reveal";
 
 const passos = [
   {
@@ -43,6 +43,7 @@ export default function ComoFunciona() {
         style={{ maxWidth: "1152px", margin: "0 auto" }}
       >
         {/* Cabeçalho */}
+        <Reveal>
         <div className="mb-16">
           <div className="h-px w-10 mb-6" style={{ backgroundColor: "#B08A63" }} />
           <p
@@ -64,8 +65,10 @@ export default function ComoFunciona() {
             <em style={{ color: "#6B4F3D" }}>do começo ao fim</em>
           </h2>
         </div>
+        </Reveal>
 
         {/* Timeline — desktop horizontal / mobile vertical */}
+        <Reveal>
         <div className="hidden md:grid grid-cols-4 gap-0 relative">
           {/* Linha de conexão */}
           <div
@@ -163,6 +166,7 @@ export default function ComoFunciona() {
             </div>
           ))}
         </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-"use client";
+import Reveal from "@/components/Reveal";
 
 const cards = [
   {
@@ -39,6 +39,7 @@ export default function Diferenciais() {
         style={{ maxWidth: "1152px", margin: "0 auto" }}
       >
         {/* Cabeçalho */}
+        <Reveal>
         <div className="mb-16">
           <div className="h-px w-10 mb-6" style={{ backgroundColor: "#6B4F3D" }} />
           <p
@@ -60,20 +61,15 @@ export default function Diferenciais() {
             <em style={{ color: "#6B4F3D" }}>diferente dos outros</em>
           </h2>
         </div>
+        </Reveal>
 
         {/* Grid 2×2 */}
+        <Reveal>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-1" style={{ backgroundColor: "#C8B5A0" }}>
-          {cards.map((card, i) => (
+          {cards.map((card) => (
             <div
-              key={i}
-              className="p-10 transition-all duration-400 group cursor-default"
-              style={{ backgroundColor: "#E7DDD1" }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLDivElement).style.backgroundColor = "#F6F2EC";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.backgroundColor = "#E7DDD1";
-              }}
+              key={card.numero}
+              className="bg-[#E7DDD1] p-10 transition-colors duration-400 group cursor-default hover:bg-[#F6F2EC]"
             >
               <span
                 className="block mb-5 font-light"
@@ -111,6 +107,7 @@ export default function Diferenciais() {
             </div>
           ))}
         </div>
+        </Reveal>
       </div>
     </section>
   );

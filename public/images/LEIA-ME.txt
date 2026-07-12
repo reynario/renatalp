@@ -1,0 +1,20 @@
+ONDE COLOCAR AS IMAGENS DO SITE
+================================
+
+public/images/hero.jpg                -> Foto de fundo do topo do site (hero).
+                                         Ideal: horizontal, ~1920x1080 ou maior.
+public/images/renata.jpg              -> Foto da Renata (secao "Sobre mim").
+                                         Ideal: vertical, proporcao 3:4.
+
+public/images/portfolio/              -> Fotos dos projetos (carrossel).
+  sala-1.jpg, sala-2.jpg, sala-3.jpg          -> Sala de Estar
+  quarto-1.jpg, quarto-2.jpg, quarto-3.jpg    -> Quarto Master
+  cozinha-1.jpg, cozinha-2.jpg, cozinha-3.jpg -> Cozinha Integrada
+  office-1.jpg, office-2.jpg, office-3.jpg    -> Home Office
+  banheiro-1.jpg, banheiro-2.jpg, banheiro-3.jpg -> Banheiro
+  varanda-1.jpg, varanda-2.jpg, varanda-3.jpg -> Varanda Gourmet
+
+Ideal: vertical, proporcao 4:5 (ex.: 1080x1350, mesmo formato de post do Instagram).
+
+- Enquanto uma foto nao existir, o site mostra um bloco de cor no lugar (nada quebra).
+- Para mais ou menos fotos por ambiente, edite o array "imagens" em components/Portfolio.tsx.
