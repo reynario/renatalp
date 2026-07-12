@@ -4,11 +4,10 @@ export default function Hero() {
       className="relative flex flex-col justify-center items-center text-center overflow-hidden"
       style={{ backgroundColor: "#2F2A26", minHeight: "100svh", paddingTop: "6rem", paddingBottom: "4rem" }}
     >
-      {/* Imagem de fundo — salve a foto em public/images/hero.jpg.
-          Se o arquivo não existir, o fundo escuro com textura continua aparecendo. */}
+      {/* Imagem de fundo */}
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/hero.jpg')" }}
+        style={{ backgroundImage: "url('/images/hero.webp')" }}
         aria-hidden="true"
       />
 

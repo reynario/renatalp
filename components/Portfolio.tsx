@@ -6,48 +6,47 @@ import { INSTAGRAM_URL } from "@/lib/constants";
 
 /*
   IMAGENS DO PORTFÓLIO
-  Salve as fotos em public/images/portfolio/ com os nomes listados abaixo
-  (ex.: public/images/portfolio/sala-1.jpg, sala-2.jpg...).
+  As fotos ficam em public/images/portfolio/ (formato WebP).
   Cada ambiente é um carrossel: adicione ou remova caminhos no array
   `imagens` conforme a quantidade de fotos de cada projeto.
-  Enquanto a foto não existir, o cartão mostra o bloco de cor como fallback.
+  Se uma foto não existir, o cartão mostra o bloco de cor como fallback.
 */
 const projetos = [
   {
     ambiente: "Sala de Estar",
     descricao: "Tons neutros e madeira natural",
     cor: "#C8B5A0",
-    imagens: ["/images/portfolio/sala-1.jpg", "/images/portfolio/sala-2.jpg", "/images/portfolio/sala-3.jpg"],
+    imagens: ["/images/portfolio/sala.webp"],
   },
   {
-    ambiente: "Quarto Master",
+    ambiente: "Sala de Jantar",
+    descricao: "Convívio com elegância",
+    cor: "#9E8470",
+    imagens: ["/images/portfolio/sala-jantar.webp"],
+  },
+  {
+    ambiente: "Cozinha",
+    descricao: "Funcionalidade com sofisticação",
+    cor: "#A8927D",
+    imagens: ["/images/portfolio/cozinha-1.webp", "/images/portfolio/cozinha-2.webp"],
+  },
+  {
+    ambiente: "Quarto do Casal",
     descricao: "Minimalismo e acolhimento",
     cor: "#B08A63",
-    imagens: ["/images/portfolio/quarto-1.jpg", "/images/portfolio/quarto-2.jpg", "/images/portfolio/quarto-3.jpg"],
+    imagens: ["/images/portfolio/quarto-casal.webp"],
   },
   {
-    ambiente: "Cozinha Integrada",
-    descricao: "Funcionalidade com elegância",
-    cor: "#A8927D",
-    imagens: ["/images/portfolio/cozinha-1.jpg", "/images/portfolio/cozinha-2.jpg", "/images/portfolio/cozinha-3.jpg"],
-  },
-  {
-    ambiente: "Home Office",
-    descricao: "Produtividade e conforto",
+    ambiente: "Quartos Infantis",
+    descricao: "Imaginação nos detalhes",
     cor: "#6B4F3D",
-    imagens: ["/images/portfolio/office-1.jpg", "/images/portfolio/office-2.jpg", "/images/portfolio/office-3.jpg"],
+    imagens: ["/images/portfolio/quarto-menina.webp", "/images/portfolio/quarto-menino.webp"],
   },
   {
     ambiente: "Banheiro",
     descricao: "Luxo nos detalhes",
     cor: "#8C7260",
-    imagens: ["/images/portfolio/banheiro-1.jpg", "/images/portfolio/banheiro-2.jpg", "/images/portfolio/banheiro-3.jpg"],
-  },
-  {
-    ambiente: "Varanda Gourmet",
-    descricao: "Extensão natural da vida",
-    cor: "#9E8470",
-    imagens: ["/images/portfolio/varanda-1.jpg", "/images/portfolio/varanda-2.jpg", "/images/portfolio/varanda-3.jpg"],
+    imagens: ["/images/portfolio/banheiro.webp"],
   },
 ];
 

@@ -5,8 +5,7 @@ export default function Solucao() {
     <section id="sobre" className="py-32" style={{ backgroundColor: "#F6F2EC" }}>
       <div className="px-6 lg:px-12" style={{ maxWidth: "1152px", margin: "0 auto" }}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          {/* Foto — salve o arquivo em public/images/renata.jpg.
-              Enquanto não existir, o placeholder elegante continua aparecendo. */}
+          {/* Foto da Renata */}
           <Reveal>
             <div className="relative">
               <div
@@ -46,7 +45,7 @@ export default function Solucao() {
                   role="img"
                   aria-label="Renata Fidelis, designer de interiores"
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: "url('/images/renata.jpg')" }}
+                  style={{ backgroundImage: "url('/images/renata.webp')" }}
                 />
               </div>
 

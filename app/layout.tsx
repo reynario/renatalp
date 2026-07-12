@@ -36,8 +36,8 @@ export const metadata: Metadata = {
     images: [
       {
         // Preview exibido ao compartilhar o link (WhatsApp, Instagram etc.).
-        // Usa a mesma foto do hero: public/images/hero.jpg
-        url: "/images/hero.jpg",
+        // JPG por compatibilidade — nem toda plataforma aceita WebP em og:image.
+        url: "/images/hero-og.jpg",
         width: 1200,
         height: 630,
         alt: "Renata Fidelis — Design de Interiores",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/images/hero.jpg"],
+    images: ["/images/hero-og.jpg"],
   },
 };
 
