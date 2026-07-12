@@ -17,30 +17,33 @@
   --foreground: #2F2A26;
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/*
+  Estilos de elementos ficam em @layer base para que as classes de
+  utilidade do Tailwind (que vivem em @layer utilities) possam
+  sobrescrevê-los. CSS fora de camada ganharia de qualquer utilitário —
+  um reset global "* { margin: 0 }" aqui anularia todos os py-*/p-*/m-*.
+  O reset de margin/padding/box-sizing já vem do preflight do Tailwind.
+*/
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* compensa a navbar fixa ao navegar por âncoras */
+    scroll-padding-top: 5rem;
+  }
 
-html {
-  scroll-behavior: smooth;
-  /* compensa a navbar fixa ao navegar por âncoras */
-  scroll-padding-top: 5rem;
-}
+  body {
+    background: var(--background);
+    color: var(--foreground);
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-}
+  h1, h2, h3, h4 {
+    font-family: var(--font-cormorant), Georgia, serif;
+    font-weight: 400;
+  }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-cormorant), Georgia, serif;
-  font-weight: 400;
-}
-
-p, span, a, li, button {
-  font-family: var(--font-montserrat), sans-serif;
+  p, span, a, li, button {
+    font-family: var(--font-montserrat), sans-serif;
+  }
 }
 
 /* Animações */
