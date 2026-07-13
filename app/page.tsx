@@ -1,18 +1,22 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Stats from "@/components/Stats";
-import Problema from "@/components/Problema";
-import Solucao from "@/components/Solucao";
-import Diferenciais from "@/components/Diferenciais";
-import Portfolio from "@/components/Portfolio";
-import CTAMeio from "@/components/CTAMeio";
-import ParaQuemE from "@/components/ParaQuemE";
-import ComoFunciona from "@/components/ComoFunciona";
-import Depoimentos from "@/components/Depoimentos";
-import FAQ from "@/components/FAQ";
-import CTAFinal from "@/components/CTAFinal";
-import WhatsAppFloat from "@/components/WhatsAppFloat";
+import { Fraunces, Inter } from "next/font/google";
+import LandingV2 from "@/components/LandingV2";
 import { INSTAGRAM_URL, SITE_URL } from "@/lib/constants";
+
+// Fontes desta versão da landing (a anterior, em /1, usa Cormorant/Montserrat).
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -34,22 +38,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <Navbar />
-      <main>
-        <Hero />
-        <Stats />
-        <Problema />
-        <Solucao />
-        <Diferenciais />
-        <Portfolio />
-        <CTAMeio />
-        <ParaQuemE />
-        <ComoFunciona />
-        <Depoimentos />
-        <FAQ />
-        <CTAFinal />
-      </main>
-      <WhatsAppFloat />
+      <LandingV2 fontVars={`${fraunces.variable} ${inter.variable}`} />
     </>
   );
 }
