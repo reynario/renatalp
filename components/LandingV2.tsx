@@ -94,7 +94,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
             Ambientes que acolhem, <em>valorizam</em> e refletem quem vive ali.
           </h1>
           <p>
-            Projetos de alto padrão com estética refinada, materiais quentes e marcenaria autoral —
+            Projetos de alto padrão com estética refinada, materiais quentes e marcenaria autoral:
             sofisticação na medida certa, sem excessos.
           </p>
           <div className="hero-actions">
@@ -105,7 +105,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
         <div
           className="hero-visual"
           role="img"
-          aria-label="Projeto em destaque — living integrado assinado por Renata Fidelis"
+          aria-label="Projeto em destaque: living integrado assinado por Renata Fidelis"
           style={{
             backgroundImage:
               "linear-gradient(135deg, rgba(59,50,43,.35), rgba(59,50,43,0) 45%), url('/images/hero.webp')",
@@ -113,7 +113,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
         >
           <span className="hero-scroll">Role para explorar</span>
           <div className="hero-tag">
-            <span className="num">Prancha 01 — Living integrado</span>
+            <span className="num">Prancha 01 · Living integrado</span>
           </div>
         </div>
       </div>
@@ -130,12 +130,12 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
           <div>
             <span className="eyebrow">A assinatura</span>
             <p className="quote">
-              &ldquo;Eu projeto ambientes para serem sentidos — não apenas admirados.&rdquo;
+              &ldquo;Eu projeto ambientes para serem sentidos, não apenas admirados.&rdquo;
             </p>
             <p>
               Renata Fidelis desenvolve projetos de interiores com uma linguagem contemporânea,
               sensorial e acolhedora. Cada ambiente nasce do equilíbrio entre proporção, materiais
-              nobres e luz quente — resultando em espaços com presença, conforto e valor percebido.
+              nobres e luz quente, resultando em espaços com presença, conforto e valor percebido.
             </p>
             <p>
               Da leitura do espaço à marcenaria autoral, cada decisão é pensada para valorizar o
@@ -183,7 +183,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
                 <div
                   className="ph"
                   role="img"
-                  aria-label={`${p.nome} — ${p.descricao}`}
+                  aria-label={`${p.nome}: ${p.descricao}`}
                   style={{ backgroundImage: `url('${p.img}')` }}
                 />
                 <div className="info">
@@ -220,7 +220,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               </div>
               <h3>Projeto Residencial</h3>
               <p>
-                Apartamentos e casas completas ou por ambiente — layout, materiais, iluminação e
+                Apartamentos e casas completas ou por ambiente: layout, materiais, iluminação e
                 marcenaria pensados para o seu dia a dia.
               </p>
             </div>
@@ -360,7 +360,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               className="form"
               onSubmit={(e) => {
                 e.preventDefault();
-                alert("Versão de teste — formulário ainda não conectado.");
+                alert("Versão de teste: formulário ainda não conectado.");
               }}
             >
               <div>
@@ -482,9 +482,8 @@ const css = `
 .lp2 .burger span{width:24px;height:1.5px;background:var(--cacau)}
 
 /* Hero */
-.lp2 .hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;padding-top:78px}
-.lp2 .hero-text{display:flex;flex-direction:column;justify-content:center;padding:80px 6vw 80px calc((100vw - 1180px)/2 + 6vw)}
-@media(max-width:1180px){.lp2 .hero-text{padding-left:6vw}}
+.lp2 .hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;gap:4vw;max-width:1180px;margin:0 auto;padding:78px 6vw 0}
+.lp2 .hero-text{display:flex;flex-direction:column;justify-content:center;padding:80px 0}
 .lp2 .hero h1{font-weight:400;font-size:clamp(38px,4.6vw,62px);line-height:1.12;letter-spacing:-.01em;margin-bottom:26px}
 .lp2 .hero h1 em{font-style:italic;color:var(--terracota)}
 .lp2 .hero-text>p{font-size:17px;color:var(--taupe);max-width:480px;margin-bottom:38px;font-weight:300}
@@ -494,7 +493,7 @@ const css = `
 .lp2 .btn-primary:hover{background:var(--terracota-hover);transform:translateY(-1px)}
 .lp2 .btn-ghost{border-color:var(--cacau);color:var(--cacau);background:transparent}
 .lp2 .btn-ghost:hover{background:var(--cacau);color:var(--linho)}
-.lp2 .hero-visual{position:relative;background-size:cover;background-position:center;background-color:#A98D6F}
+.lp2 .hero-visual{position:relative;margin:48px 0;background-size:cover;background-position:center;background-color:#A98D6F}
 .lp2 .hero-tag{position:absolute;left:34px;bottom:34px;color:var(--branco);text-shadow:0 1px 8px rgba(43,34,27,.5)}
 .lp2 .hero-tag .num{font-family:var(--display);font-size:15px;font-style:italic;opacity:.9}
 .lp2 .hero-scroll{position:absolute;left:34px;top:110px;writing-mode:vertical-rl;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:rgba(253,251,247,.8);text-shadow:0 1px 6px rgba(43,34,27,.5)}
@@ -604,8 +603,9 @@ const css = `
 
 /* Responsivo */
 @media(max-width:960px){
-  .lp2 .hero{grid-template-columns:1fr;min-height:auto}
-  .lp2 .hero-visual{min-height:62vw}
+  .lp2 .hero{grid-template-columns:1fr;min-height:auto;gap:0;padding:78px 0 0}
+  .lp2 .hero-text{padding:80px 6vw}
+  .lp2 .hero-visual{min-height:62vw;margin:0}
   .lp2 .hero-scroll{display:none}
   .lp2 .assinatura-grid,.lp2 .contato-grid{grid-template-columns:1fr;gap:48px}
   .lp2 .grid-proj,.lp2 .grid-serv,.lp2 .depo-grid{grid-template-columns:1fr 1fr}
