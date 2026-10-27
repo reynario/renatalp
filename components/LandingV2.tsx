@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
+import { enviarAoHub, type Contato } from "@/lib/hub";
 
 const TELEFONE_EXIBICAO = "(75) 98305-5400";
 
@@ -48,6 +49,41 @@ const depoimentos = [
 ];
 
 export default function LandingV2({ fontVars }: { fontVars: string }) {
+  const [envio, setEnvio] = useState<"livre" | "enviando" | "ok">("livre");
+
+  // Envia para o Hub (lead do cliente 35). Sem Hub configurado ou com erro,
+  // abre o WhatsApp com os dados preenchidos para o contato não se perder.
+  async function enviarFormulario(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const f = new FormData(form);
+    const c: Contato = {
+      nome: String(f.get("nome") || "").trim(),
+      whatsapp: String(f.get("whatsapp") || "").trim(),
+      tipo: String(f.get("tipo") || ""),
+      mensagem: String(f.get("mensagem") || "").trim(),
+    };
+    const w = window as unknown as { dataLayer?: object[] };
+    w.dataLayer = w.dataLayer || [];
+    setEnvio("enviando");
+    let noHub = false;
+    try {
+      noHub = await enviarAoHub(c);
+    } catch {
+      noHub = false;
+    }
+    w.dataLayer.push({ event: "generate_lead", form_destination: noHub ? "hub" : "whatsapp", project_type: c.tipo });
+    if (noHub) {
+      form.reset();
+      setEnvio("ok");
+      return;
+    }
+    const texto = `Olá Renata! Sou ${c.nome}. Projeto: ${c.tipo}.${c.mensagem ? ` ${c.mensagem}` : ""}`;
+    setEnvio("livre");
+    // Mesma aba: depois do await o navegador bloquearia uma janela nova.
+    window.location.href = `https://wa.me/5575983055400?text=${encodeURIComponent(texto)}`;
+  }
+
   const [scrolled, setScrolled] = useState(false);
   const [menuAberto, setMenuAberto] = useState(false);
   const [filtro, setFiltro] = useState<FiltroId>("todos");
@@ -358,22 +394,24 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
           <div>
             <form
               className="form"
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert("Versão de teste: formulário ainda não conectado.");
-              }}
+              onSubmit={enviarFormulario}
             >
+              {envio === "ok" ? (
+                <p className="form-ok" role="status">
+                  Recebi seus dados. Vou te chamar no WhatsApp em até 24 horas úteis.
+                </p>
+              ) : null}
               <div>
                 <label htmlFor="lp2-nome">Nome</label>
-                <input id="lp2-nome" type="text" placeholder="Seu nome" required />
+                <input id="lp2-nome" name="nome" type="text" autoComplete="name" placeholder="Seu nome" required />
               </div>
               <div>
                 <label htmlFor="lp2-whats">WhatsApp</label>
-                <input id="lp2-whats" type="tel" placeholder="(00) 00000-0000" required />
+                <input id="lp2-whats" name="whatsapp" type="tel" autoComplete="tel" placeholder="(00) 00000-0000" required />
               </div>
               <div>
                 <label htmlFor="lp2-tipo">Tipo de projeto</label>
-                <select id="lp2-tipo" required defaultValue="">
+                <select id="lp2-tipo" name="tipo" required defaultValue="">
                   <option value="" disabled>Selecione…</option>
                   <option>Residencial</option>
                   <option>Comercial</option>
@@ -382,14 +420,14 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               </div>
               <div>
                 <label htmlFor="lp2-msg">Conte sobre seu espaço</label>
-                <textarea id="lp2-msg" placeholder="Ex.: apartamento de 90m², quero integrar sala e cozinha…" />
+                <textarea id="lp2-msg" name="mensagem" placeholder="Ex.: apartamento de 90m², quero integrar sala e cozinha…" />
               </div>
               <label className="lgpd">
                 <input type="checkbox" required /> Autorizo o contato e concordo com a{" "}
                 <a href="#" style={{ textDecoration: "underline" }}>Política de Privacidade</a>.
               </label>
-              <button type="submit" className="btn btn-primary" style={{ justifyContent: "center" }}>
-                Solicitar orçamento
+              <button type="submit" className="btn btn-primary" style={{ justifyContent: "center" }} disabled={envio === "enviando"}>
+                {envio === "enviando" ? "Enviando…" : "Solicitar orçamento"}
               </button>
               <div className="ou">ou</div>
               <a className="btn btn-whats" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
@@ -573,6 +611,7 @@ const css = `
 .lp2 .form input,.lp2 .form select,.lp2 .form textarea{width:100%;padding:14px 16px;border:1px solid rgba(59,50,43,.18);border-radius:2px;background:var(--linho);font-size:16px;color:var(--cacau);transition:border-color .25s}
 .lp2 .form input:focus,.lp2 .form select:focus,.lp2 .form textarea:focus{outline:2px solid transparent;border-color:var(--terracota)}
 .lp2 .form textarea{resize:vertical;min-height:96px}
+.lp2 .form-ok{background:var(--linho);border-left:3px solid var(--terracota);padding:14px 16px;margin:0;font-size:15px}
 .lp2 .lgpd{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--taupe);text-transform:none;letter-spacing:normal}
 .lp2 .lgpd input{width:18px;height:18px;min-width:18px;padding:0;margin-top:2px;accent-color:var(--terracota)}
 .lp2 .ou{display:flex;align-items:center;gap:16px;color:var(--taupe);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin:16px 0 0}

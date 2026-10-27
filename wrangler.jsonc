@@ -2,14 +2,19 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "renatalp",
   "compatibility_date": "2026-07-01",
-  // Gera ./out antes de publicar — vale tanto localmente quanto no
+  // Worker na frente dos arquivos estáticos só para repassar o formulário ao RN Hub
+  // (ver worker.js). O resto do site continua servido direto de ./out.
+  "main": "worker.js",
+  // Gera ./out antes de publicar, tanto localmente quanto no
   // Workers Builds (CI), mesmo sem "build command" configurado no painel.
   "build": {
     "command": "npm run build"
   },
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
   }
 }
