@@ -109,6 +109,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
             <li><a href="#projetos">Projetos</a></li>
             <li><a href="#servicos">Serviços</a></li>
             <li><a href="#processo">Processo</a></li>
+            <li><a href="/blog">Blog</a></li>
             <li><a href="#contato" className="nav-cta">Solicitar projeto</a></li>
           </ul>
           <button
@@ -534,6 +535,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
             <a href="#sobre">Sobre</a>
             <a href="#projetos">Projetos</a>
             <a href="#contato">Contato</a>
+            <a href="/blog">Blog</a>
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram</a>
           </nav>
           <small>© {new Date().getFullYear()} Renata Fidelis Design de Interiores</small>

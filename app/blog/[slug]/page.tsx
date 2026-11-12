@@ -14,6 +14,21 @@ export function generateStaticParams() {
   return slugs.length ? slugs : [{ slug: "em-breve" }];
 }
 
+// Transforma [texto](/caminho) em link dentro de um parágrafo.
+function comLinks(t: string) {
+  const partes = t.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return partes.map((p, i) => {
+    const m = p.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    return m ? (
+      <Link key={i} href={m[2]}>
+        {m[1]}
+      </Link>
+    ) : (
+      p
+    );
+  });
+}
+
 function buscar(slug: string) {
   return postsPublicados().find((p) => p.slug === slug);
 }
@@ -104,7 +119,7 @@ export default async function Artigo({ params }: { params: Promise<{ slug: strin
           <section key={s.titulo}>
             <h2>{s.titulo}</h2>
             {s.paragrafos.map((t, i) => (
-              <p key={i}>{t}</p>
+              <p key={i}>{comLinks(t)}</p>
             ))}
           </section>
         ))}
