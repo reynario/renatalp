@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
+import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WA_MSG, waLink } from "@/lib/constants";
 import { enviarAoHub, type Contato } from "@/lib/hub";
 
 const TELEFONE_EXIBICAO = "(75) 98305-5400";
@@ -78,10 +78,10 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
       setEnvio("ok");
       return;
     }
-    const texto = `Olá Renata! Sou ${c.nome}. Projeto: ${c.tipo}.${c.mensagem ? ` ${c.mensagem}` : ""}`;
+    const texto = `Olá, Renata! Vim pelo formulário do site. Sou ${c.nome}. Projeto: ${c.tipo}.${c.mensagem ? ` ${c.mensagem}` : ""}`;
     setEnvio("livre");
     // Mesma aba: depois do await o navegador bloquearia uma janela nova.
-    window.location.href = `https://wa.me/5575983055400?text=${encodeURIComponent(texto)}`;
+    window.location.href = waLink(texto);
   }
 
   const [scrolled, setScrolled] = useState(false);
@@ -290,6 +290,89 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
         </div>
       </section>
 
+      {/* 4B · PROJETO DE 1 AMBIENTE */}
+      <section className="umamb" id="um-ambiente">
+        <div className="wrap umamb-grid">
+          <div>
+            <span className="eyebrow">Projeto de 1 ambiente</span>
+            <h2>
+              Um ambiente <em>resolvido</em>, pronto para executar.
+            </h2>
+            <p className="umamb-lead">
+              Para quem quer começar por um cômodo: você me conta como usa o espaço, envia as
+              medidas e algumas fotos, e recebe o projeto com imagem 3D realista e o detalhamento
+              que a marcenaria precisa para fabricar sem retrabalho.
+            </p>
+            <p className="umamb-lead">
+              E não fica só no desenho do móvel. Eu acompanho você nas escolhas do ambiente: a cor
+              da parede, o piso que conversa com o resto da casa, a iluminação e o que vale comprar.
+              O olhar é o seu, do que funciona para a sua rotina.
+            </p>
+            <a
+              className="btn btn-primary"
+              href={waLink(WA_MSG.umAmbiente)}
+              data-origem="um_ambiente"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Quero meu projeto
+            </a>
+          </div>
+          <div className="umamb-ficha">
+            <span className="ficha-rot">Prancha · o que você recebe</span>
+            <ul>
+              <li>Layout do ambiente e imagem 3D realista</li>
+              <li>Detalhamento técnico para a marcenaria</li>
+              <li>Orientação de cores, materiais e iluminação</li>
+              <li>Presencial em Feira de Santana ou online, para todo o Brasil</li>
+            </ul>
+            <div className="ficha-dados">
+              <div>
+                <small>Entrega</small>
+                <b>24 horas</b>
+                <span>depois do briefing e das medidas</span>
+              </div>
+              <div>
+                <small>A partir de</small>
+                <b>R$ 497</b>
+                <span>por ambiente</span>
+              </div>
+            </div>
+            <p className="ficha-nota">
+              Imóvel completo: a partir de R$ 3.000, com entrega em 7 dias.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 4C · PARA LOJAS E MARCENARIAS */}
+      <section className="lojas" id="lojas">
+        <div className="wrap lojas-grid">
+          <div>
+            <span className="eyebrow">Para lojas e marcenarias</span>
+            <h2>
+              O projeto do seu cliente, <em>pronto para vender</em> e para fabricar.
+            </h2>
+          </div>
+          <div>
+            <p>
+              Projetos de móveis planejados 100% online para lojas e marcenarias: desenho no Promob,
+              render realista, detalhamento técnico e apresentação para o seu cliente. São 23 anos
+              no setor moveleiro, então o projeto já nasce sabendo como a fábrica vai produzir.
+            </p>
+            <a
+              className="btn btn-ghost"
+              href={waLink(WA_MSG.lojas)}
+              data-origem="lojas"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Falar sobre parceria
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* 5 · PROCESSO */}
       <section className="processo" id="processo">
         <div className="wrap">
@@ -379,7 +462,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
             <div className="dados">
               <div className="dado">
                 <small>WhatsApp</small>
-                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">{TELEFONE_EXIBICAO}</a>
+                <a href={waLink(WA_MSG.contato)} data-origem="contato" target="_blank" rel="noopener noreferrer">{TELEFONE_EXIBICAO}</a>
               </div>
               <div className="dado">
                 <small>E-mail</small>
@@ -430,7 +513,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
                 {envio === "enviando" ? "Enviando…" : "Solicitar orçamento"}
               </button>
               <div className="ou">ou</div>
-              <a className="btn btn-whats" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              <a className="btn btn-whats" href={waLink(WA_MSG.formulario)} data-origem="formulario" target="_blank" rel="noopener noreferrer">
                 Chamar no WhatsApp
               </a>
             </form>
@@ -458,7 +541,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
       </footer>
 
       {/* WhatsApp flutuante */}
-      <a className="zap" aria-label="Falar no WhatsApp" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+      <a className="zap" aria-label="Falar no WhatsApp" href={waLink(WA_MSG.flutuante)} data-origem="flutuante" target="_blank" rel="noopener noreferrer">
         <svg viewBox="0 0 32 32" aria-hidden="true">
           <path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.8 5 2.3 7L4 29l7.3-2.3c1.9 1 4 1.6 6.2 1.6h.5c6.6 0 12-5.3 12-11.9C30 8.3 24.6 3 16 3zm7 16.9c-.3.8-1.7 1.6-2.4 1.7-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.6-1.6-5.9-5.2-6.1-5.4-.2-.2-1.5-2-1.5-3.7 0-1.8 1-2.7 1.3-3 .3-.4.7-.5 1-.5h.7c.2 0 .5-.1.8.6.3.8 1 2.7 1.1 2.9.1.2.2.4 0 .7-.1.3-.2.4-.4.7l-.6.7c-.2.2-.4.4-.2.8.2.4 1 1.7 2.2 2.7 1.5 1.4 2.8 1.8 3.2 2 .4.2.6.1.8-.1.2-.3 1-1.1 1.2-1.5.3-.4.5-.3.9-.2.3.1 2.2 1 2.6 1.2.4.2.6.3.7.5.1.1.1.9-.1 1.8z" />
         </svg>
@@ -576,6 +659,29 @@ const css = `
 .lp2 .serv h3{font-weight:500;font-size:22px;margin-bottom:12px}
 .lp2 .serv p{color:var(--taupe);font-size:14.5px;font-weight:300}
 
+/* Projeto de 1 ambiente */
+.lp2 .umamb{background:var(--areia)}
+.lp2 .umamb-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.lp2 .umamb h2{margin-bottom:24px}
+.lp2 .umamb-lead{color:var(--taupe);font-weight:300;margin-bottom:16px;max-width:520px}
+.lp2 .umamb .btn{margin-top:18px}
+.lp2 .umamb-ficha{background:var(--branco);border:1px solid rgba(59,50,43,.1);border-radius:2px;padding:40px 38px}
+.lp2 .ficha-rot{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--bronze);font-weight:500;padding-bottom:16px;border-bottom:1px solid var(--bronze);margin-bottom:22px}
+.lp2 .umamb-ficha ul{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:12px}
+.lp2 .umamb-ficha li{position:relative;padding-left:22px;font-size:15px;color:var(--cacau)}
+.lp2 .umamb-ficha li::before{content:'';position:absolute;left:0;top:.72em;width:10px;height:1px;background:var(--bronze)}
+.lp2 .ficha-dados{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:24px 0;border-top:1px solid rgba(59,50,43,.12);border-bottom:1px solid rgba(59,50,43,.12)}
+.lp2 .ficha-dados small{display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);margin-bottom:6px}
+.lp2 .ficha-dados b{display:block;font-family:var(--display);font-weight:400;font-size:24px;line-height:1.2;color:var(--cacau)}
+.lp2 .ficha-dados span{display:block;font-size:12.5px;color:var(--taupe);margin-top:4px}
+.lp2 .ficha-nota{font-size:13.5px;color:var(--taupe);font-weight:300;margin-top:20px}
+
+/* Para lojas e marcenarias */
+.lp2 .lojas{background:var(--linho);padding:84px 0;border-top:1px solid rgba(59,50,43,.1)}
+.lp2 .lojas h2{font-size:clamp(26px,2.8vw,36px)}
+.lp2 .lojas-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.lp2 .lojas p{color:var(--taupe);font-weight:300;margin-bottom:28px}
+
 /* Processo */
 .lp2 .processo{background:var(--cacau);color:var(--linho)}
 .lp2 .processo .eyebrow{color:var(--salvia)}
@@ -646,7 +752,8 @@ const css = `
   .lp2 .hero-text{padding:80px 6vw}
   .lp2 .hero-visual{min-height:62vw;margin:0}
   .lp2 .hero-scroll{display:none}
-  .lp2 .assinatura-grid,.lp2 .contato-grid{grid-template-columns:1fr;gap:48px}
+  .lp2 .assinatura-grid,.lp2 .contato-grid,.lp2 .umamb-grid{grid-template-columns:1fr;gap:48px}
+  .lp2 .lojas-grid{grid-template-columns:1fr;gap:26px}
   .lp2 .grid-proj,.lp2 .grid-serv,.lp2 .depo-grid{grid-template-columns:1fr 1fr}
   .lp2 .passos{grid-template-columns:1fr 1fr}
   .lp2 .passo{border-right:none;border-bottom:1px solid rgba(244,238,228,.16);padding:32px 0 26px}
@@ -661,6 +768,8 @@ const css = `
   .lp2 section{padding:76px 0}
   .lp2 .grid-proj,.lp2 .grid-serv,.lp2 .depo-grid,.lp2 .passos{grid-template-columns:1fr}
   .lp2 .form{padding:30px 22px}
+  .lp2 .umamb-ficha{padding:30px 22px}
+  .lp2 .lojas{padding:64px 0}
   .lp2 .numeros{gap:36px}
 }
 @media(prefers-reduced-motion:reduce){

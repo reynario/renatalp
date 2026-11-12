@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Fraunces, Inter } from "next/font/google";
-import { WHATSAPP_URL } from "@/lib/constants";
+import { WA_MSG, waLink } from "@/lib/constants";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -37,7 +37,7 @@ export default function BlogShell({ children }: { children: React.ReactNode }) {
           <p className="rotulo">Projeto de interiores</p>
           <h2>Quer conversar sobre o seu ambiente?</h2>
           <p>Conte como é o seu espaço e receba um retorno em até 24 horas úteis.</p>
-          <a className="btn" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+          <a className="btn" href={waLink(WA_MSG.blog)} data-origem="blog_topo" target="_blank" rel="noopener noreferrer">
             Falar no WhatsApp
           </a>
         </div>

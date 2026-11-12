@@ -20,7 +20,12 @@ export default function RastreioContato() {
       if (!canal) return;
       const w = window as unknown as { dataLayer?: object[] };
       w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({ event: "contact", contact_method: canal, page_path: location.pathname });
+      w.dataLayer.push({
+        event: "contact",
+        contact_method: canal,
+        contact_origin: a?.getAttribute("data-origem") || "sem_origem",
+        page_path: location.pathname,
+      });
     };
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);

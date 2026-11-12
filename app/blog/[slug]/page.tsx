@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BlogShell from "@/components/BlogShell";
-import { AUTORA, SITE_NAME, SITE_URL, WHATSAPP_URL } from "@/lib/constants";
+import { AUTORA, SITE_NAME, SITE_URL, WA_MSG, waLink } from "@/lib/constants";
 import { dataPorExtenso, postsPublicados } from "@/lib/posts";
 
 export const dynamicParams = false;
@@ -109,7 +109,7 @@ export default async function Artigo({ params }: { params: Promise<{ slug: strin
           </section>
         ))}
         <p>
-          Quer saber como isso fica no seu espaço? <a href={WHATSAPP_URL}>Fale comigo pelo WhatsApp</a>{" "}
+          Quer saber como isso fica no seu espaço? <a href={waLink(WA_MSG.blog)} data-origem="blog_artigo">Fale comigo pelo WhatsApp</a>{" "}
           ou veja os <Link href="/#projetos">projetos no portfólio</Link>.
         </p>
         {post.perguntas.length ? (

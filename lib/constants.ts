@@ -3,6 +3,23 @@ export const WHATSAPP_URL =
 
 export const TELEFONE = "+5575983055400";
 
+// Link de WhatsApp com mensagem própria de cada ponto do site. A mensagem muda
+// conforme a origem (seção 1 ambiente, lojas, contato...) para a Renata saber
+// de onde a pessoa veio; o atributo data-origem no link leva a mesma origem
+// para o dataLayer (ver RastreioContato).
+export function waLink(texto: string): string {
+  return `https://wa.me/5575983055400?text=${encodeURIComponent(texto)}`;
+}
+
+export const WA_MSG = {
+  contato: "Olá, Renata! Vim pelo site e gostaria de conversar sobre um projeto de interiores.",
+  formulario: "Olá, Renata! Vim pelo site e quero solicitar um orçamento de projeto.",
+  flutuante: "Olá, Renata! Estou no seu site e gostaria de tirar uma dúvida sobre projeto de interiores.",
+  umAmbiente: "Olá, Renata! Vim pelo site e quero saber mais sobre o projeto de 1 ambiente.",
+  lojas: "Olá, Renata! Vim pelo site. Tenho uma loja ou marcenaria e quero saber sobre os projetos online.",
+  blog: "Olá, Renata! Li um artigo no seu site e gostaria de conversar sobre o meu espaço.",
+} as const;
+
 export const INSTAGRAM_URL = "https://www.instagram.com/renatafidelis80/";
 
 export const INSTAGRAM_HANDLE = "@renatafidelis80";
