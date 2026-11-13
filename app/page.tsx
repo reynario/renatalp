@@ -26,7 +26,7 @@ const jsonLd = {
   "@id": `${SITE_URL}/#negocio`,
   name: SITE_NAME,
   description:
-    "Projetos de interiores que unem sofisticação e acolhimento, em Feira de Santana e online para todo o Brasil. Mais de 20 anos de experiência e mais de 1.000 ambientes projetados.",
+    "Projetos de interiores que unem sofisticação e acolhimento, em Feira de Santana e online para todo o Brasil. São 23 anos no setor moveleiro e mais de 1.000 ambientes projetados.",
   url: SITE_URL,
   image: `${SITE_URL}/images/hero-og.jpg`,
   telephone: TELEFONE,

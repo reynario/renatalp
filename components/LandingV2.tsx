@@ -1,9 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WA_MSG, waLink } from "@/lib/constants";
 import { enviarAoHub, type Contato } from "@/lib/hub";
+import BlurText from "@/components/reactbits/BlurText";
+import CountUp from "@/components/reactbits/CountUp";
+
+// Classe de linha do texts reveal (transitions.dev) com atraso escalonado de 1 a 6.
+const linha = (n: number) => `t-stagger-line t-stagger-line--${Math.min(Math.max(n, 1), 6)}`;
 
 const TELEFONE_EXIBICAO = "(75) 98305-5400";
 
@@ -87,7 +92,15 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
 
   const [scrolled, setScrolled] = useState(false);
   const [menuAberto, setMenuAberto] = useState(false);
+  // aba = botão marcado (muda na hora, move a pílula); filtro = cards na tela
+  // (muda depois do fade de saída da grade).
+  const [aba, setAba] = useState<FiltroId>("todos");
   const [filtro, setFiltro] = useState<FiltroId>("todos");
+  const raiz = useRef<HTMLDivElement>(null);
+  const barra = useRef<HTMLDivElement>(null);
+  const pilula = useRef<HTMLSpanElement>(null);
+  const grade = useRef<HTMLDivElement>(null);
+  const trocandoFiltro = useRef(false);
 
   useEffect(() => {
     const aoRolar = () => setScrolled(window.scrollY > 10);
@@ -96,9 +109,96 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
     return () => window.removeEventListener("scroll", aoRolar);
   }, []);
 
+  // Reveal ao rolar: todo bloco [data-reveal] ganha .is-shown ao entrar na tela.
+  useEffect(() => {
+    const blocos = Array.from(raiz.current?.querySelectorAll<HTMLElement>("[data-reveal]") ?? []);
+    if (typeof IntersectionObserver === "undefined") {
+      blocos.forEach((b) => b.classList.add("is-shown"));
+      return;
+    }
+    const io = new IntersectionObserver(
+      (entradas) => {
+        entradas.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-shown");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+    blocos.forEach((b) => io.observe(b));
+    return () => io.disconnect();
+  }, []);
+
+  // Pílula do filtro (tabs sliding): posição e largura do botão marcado.
+  const moverPilula = useCallback((animar: boolean) => {
+    const pill = pilula.current;
+    const tab = barra.current?.querySelector<HTMLElement>('.t-tab[aria-selected="true"]');
+    if (!pill || !tab) return;
+    if (!animar) {
+      const antes = pill.style.transition;
+      pill.style.transition = "none";
+      pill.style.transform = `translateX(${tab.offsetLeft}px)`;
+      pill.style.width = `${tab.offsetWidth}px`;
+      void pill.offsetWidth;
+      pill.style.transition = antes;
+    } else {
+      pill.style.transform = `translateX(${tab.offsetLeft}px)`;
+      pill.style.width = `${tab.offsetWidth}px`;
+    }
+  }, []);
+
+  useEffect(() => {
+    const semAnimar = () => moverPilula(false);
+    requestAnimationFrame(semAnimar);
+    // a largura dos botões muda quando a fonte termina de carregar
+    document.fonts?.ready.then(semAnimar);
+    window.addEventListener("resize", semAnimar);
+    return () => window.removeEventListener("resize", semAnimar);
+  }, [moverPilula]);
+
+  useEffect(() => {
+    moverPilula(true);
+  }, [aba, moverPilula]);
+
+  // Troca de filtro: some a grade (is-hiding), troca os cards e reapresenta
+  // com o mesmo reveal escalonado.
+  function trocarFiltro(id: FiltroId) {
+    if (id === aba) return;
+    setAba(id);
+    const g = grade.current;
+    if (!g || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setFiltro(id);
+      return;
+    }
+    g.classList.add("is-hiding");
+    g.classList.remove("is-shown");
+    window.setTimeout(() => {
+      trocandoFiltro.current = true;
+      setFiltro(id);
+    }, 200);
+  }
+
+  useEffect(() => {
+    if (!trocandoFiltro.current) return;
+    trocandoFiltro.current = false;
+    const g = grade.current;
+    if (!g) return;
+    g.classList.remove("is-hiding");
+    void g.offsetHeight;
+    g.classList.add("is-shown");
+  }, [filtro]);
+
+  const visiveis = projetos.filter((p) => filtro === "todos" || p.cat === filtro);
+
   return (
-    <div className={`lp2 ${fontVars}`}>
+    <div className={`lp2 ${fontVars}`} ref={raiz}>
       <style>{css}</style>
+      {/* Sem JavaScript, nada fica escondido esperando o reveal. */}
+      <noscript>
+        <style>{`.t-stagger-line{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+      </noscript>
 
       <header id="topo" className={scrolled ? "scrolled" : undefined}>
         <div className="wrap nav">
@@ -126,16 +226,25 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
 
       {/* 1 · HERO */}
       <div className="hero">
-        <div className="hero-text">
-          <span className="eyebrow">Design de Interiores · Residencial &amp; Comercial</span>
-          <h1>
-            Ambientes que acolhem, <em>valorizam</em> e refletem quem vive ali.
-          </h1>
-          <p>
+        <div className="hero-text t-stagger" data-reveal>
+          <span className={`eyebrow ${linha(1)}`}>Design de Interiores · Residencial &amp; Comercial</span>
+          {/* React Bits BlurText: o título entra palavra por palavra. */}
+          <BlurText
+            as="h1"
+            text="Ambientes que acolhem, valorizam e refletem quem vive ali."
+            emphasis={["valorizam"]}
+            trigger="load"
+            direction="bottom"
+            delay={55}
+            blur={8}
+            distance={16}
+            stepDuration={0.4}
+          />
+          <p className="t-stagger-line" style={{ transitionDelay: "420ms" }}>
             Projetos de alto padrão com estética refinada, materiais quentes e marcenaria autoral:
             sofisticação na medida certa, sem excessos.
           </p>
-          <div className="hero-actions">
+          <div className="hero-actions t-stagger-line" style={{ transitionDelay: "520ms" }}>
             <a href="#contato" className="btn btn-primary">Quero meu projeto</a>
             <a href="#projetos" className="btn btn-ghost">Ver projetos</a>
           </div>
@@ -157,8 +266,8 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
 
       {/* 2 · ASSINATURA / BIO */}
       <section className="assinatura" id="sobre">
-        <div className="wrap assinatura-grid">
-          <div className="retrato">
+        <div className="wrap assinatura-grid t-stagger" data-reveal>
+          <div className={`retrato ${linha(1)}`}>
             <Image
               src="/images/renata.webp"
               alt="Renata Fidelis, designer de interiores em Feira de Santana"
@@ -166,7 +275,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               sizes="(max-width: 960px) 100vw, 40vw"
             />
           </div>
-          <div>
+          <div className={linha(3)}>
             <span className="eyebrow">A assinatura</span>
             <p className="quote">
               &ldquo;Eu projeto ambientes para serem sentidos, não apenas admirados.&rdquo;
@@ -194,30 +303,36 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
       {/* 3 · PORTFÓLIO */}
       <section className="portfolio" id="projetos">
         <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow">Portfólio</span>
-            <h2>
+          <div className="sec-head t-stagger" data-reveal>
+            <span className={`eyebrow ${linha(1)}`}>Portfólio</span>
+            <h2 className={linha(2)}>
               Projetos com presença, <em>sem exagero</em>.
             </h2>
-            <p>Uma seleção de ambientes desenvolvidos com atenção a cada detalhe.</p>
+            <p className={linha(3)}>Uma seleção de ambientes desenvolvidos com atenção a cada detalhe.</p>
           </div>
-          <div className="filtros">
-            {filtros.map((f) => (
-              <button
-                key={f.id}
-                className={`filtro${filtro === f.id ? " ativo" : ""}`}
-                onClick={() => setFiltro(f.id)}
-              >
-                {f.label}
-              </button>
-            ))}
+          <div className="filtros-wrap">
+            <div className="filtros t-tabs" role="tablist" aria-label="Filtrar projetos" ref={barra}>
+              <span className="t-tabs-pill" aria-hidden="true" ref={pilula}></span>
+              {filtros.map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={aba === f.id}
+                  className="filtro t-tab"
+                  onClick={() => trocarFiltro(f.id)}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
-          <div className="grid-proj">
+          <div className="grid-proj t-stagger" data-reveal ref={grade}>
             {projetos.map((p) => (
               <article
                 key={p.nome}
-                className="card"
-                style={{ display: filtro === "todos" || filtro === p.cat ? undefined : "none" }}
+                className={`card ${linha(visiveis.indexOf(p) + 1)}`}
+                style={{ display: visiveis.includes(p) ? undefined : "none" }}
               >
                 <div className="ph">
                   <Image
@@ -245,14 +360,14 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
       {/* 4 · SERVIÇOS */}
       <section className="servicos" id="servicos">
         <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow">Serviços</span>
-            <h2>
+          <div className="sec-head t-stagger" data-reveal>
+            <span className={`eyebrow ${linha(1)}`}>Serviços</span>
+            <h2 className={linha(2)}>
               Do primeiro traço à <em>entrega final</em>.
             </h2>
           </div>
-          <div className="grid-serv">
-            <div className="serv">
+          <div className="grid-serv t-stagger" data-reveal>
+            <div className={`serv ${linha(1)}`}>
               <div className="ico">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
                   <path d="M3 11l9-8 9 8" strokeLinecap="round" strokeLinejoin="round" />
@@ -265,7 +380,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
                 marcenaria pensados para o seu dia a dia.
               </p>
             </div>
-            <div className="serv">
+            <div className={`serv ${linha(3)}`}>
               <div className="ico">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
                   <path d="M4 7h16M4 7l1.5-4h13L20 7M4 7v13h16V7" strokeLinecap="round" strokeLinejoin="round" />
@@ -278,7 +393,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
                 clientes e equipe.
               </p>
             </div>
-            <div className="serv">
+            <div className={`serv ${linha(5)}`}>
               <div className="ico">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
                   <path d="M3 21l3.5-1 13-13-2.5-2.5-13 13L3 21z" strokeLinecap="round" strokeLinejoin="round" />
@@ -297,8 +412,8 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
 
       {/* 4B · PROJETO DE 1 AMBIENTE */}
       <section className="umamb" id="um-ambiente">
-        <div className="wrap umamb-grid">
-          <div>
+        <div className="wrap umamb-grid t-stagger" data-reveal>
+          <div className={linha(1)}>
             <span className="eyebrow">Projeto de 1 ambiente</span>
             <h2>
               Um ambiente <em>resolvido</em>, pronto para executar.
@@ -323,7 +438,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               Quero meu projeto
             </a>
           </div>
-          <div className="umamb-ficha">
+          <div className={`umamb-ficha ${linha(3)}`}>
             <span className="ficha-rot">Prancha · o que você recebe</span>
             <ul>
               <li>Layout do ambiente e imagem 3D realista</li>
@@ -352,14 +467,14 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
 
       {/* 4C · PARA LOJAS E MARCENARIAS */}
       <section className="lojas" id="lojas">
-        <div className="wrap lojas-grid">
-          <div>
+        <div className="wrap lojas-grid t-stagger" data-reveal>
+          <div className={linha(1)}>
             <span className="eyebrow">Para lojas e marcenarias</span>
             <h2>
               O projeto do seu cliente, <em>pronto para vender</em> e para fabricar.
             </h2>
           </div>
-          <div>
+          <div className={linha(3)}>
             <p>
               Projetos de móveis planejados 100% online para lojas e marcenarias: desenho no Promob,
               render realista, detalhamento técnico e apresentação para o seu cliente. São 23 anos
@@ -381,29 +496,29 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
       {/* 5 · PROCESSO */}
       <section className="processo" id="processo">
         <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow">Como funciona</span>
-            <h2>
+          <div className="sec-head t-stagger" data-reveal>
+            <span className={`eyebrow ${linha(1)}`}>Como funciona</span>
+            <h2 className={linha(2)}>
               Um processo claro, do briefing à <em>entrega</em>.
             </h2>
           </div>
-          <div className="passos">
-            <div className="passo">
+          <div className="passos t-stagger" data-reveal>
+            <div className={`passo ${linha(1)}`}>
               <span className="n">Etapa um</span>
               <h3>Briefing</h3>
               <p>Entendimento do espaço, das necessidades e do seu estilo de vida.</p>
             </div>
-            <div className="passo">
+            <div className={`passo ${linha(3)}`}>
               <span className="n">Etapa dois</span>
               <h3>Conceito</h3>
               <p>Direção estética, paleta de materiais e primeiras propostas de layout.</p>
             </div>
-            <div className="passo">
+            <div className={`passo ${linha(5)}`}>
               <span className="n">Etapa três</span>
               <h3>Projeto executivo</h3>
               <p>Detalhamento técnico completo: marcenaria, iluminação e especificações.</p>
             </div>
-            <div className="passo">
+            <div className={`passo ${linha(6)}`}>
               <span className="n">Etapa quatro</span>
               <h3>Acompanhamento</h3>
               <p>Direcionamento na execução para que o resultado saia exatamente como projetado.</p>
@@ -415,15 +530,15 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
       {/* 6 · PROVA SOCIAL */}
       <section className="prova">
         <div className="wrap">
-          <div className="sec-head">
-            <span className="eyebrow">Depoimentos</span>
-            <h2>
+          <div className="sec-head t-stagger" data-reveal>
+            <span className={`eyebrow ${linha(1)}`}>Depoimentos</span>
+            <h2 className={linha(2)}>
               Quem viveu a <em>transformação</em>.
             </h2>
           </div>
-          <div className="depo-grid">
-            {depoimentos.map((d) => (
-              <div className="depo" key={d.nome}>
+          <div className="depo-grid t-stagger" data-reveal>
+            {depoimentos.map((d, i) => (
+              <div className={`depo ${linha(i * 2 + 1)}`} key={d.nome}>
                 <p className="txt">&ldquo;{d.texto}&rdquo;</p>
                 <div className="quem">
                   <div className="avatar" aria-hidden="true">{d.iniciais}</div>
@@ -435,17 +550,24 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               </div>
             ))}
           </div>
+          {/* React Bits CountUp: os números contam quando entram na tela. */}
           <div className="numeros">
             <div className="num-item">
-              <div className="valor">+1.000</div>
-              <div className="rot">Projetos entregues</div>
+              <div className="valor">
+                <CountUp to={1000} separator="." prefix="+" duration={1.8} />
+              </div>
+              <div className="rot">Ambientes projetados</div>
             </div>
             <div className="num-item">
-              <div className="valor">+20</div>
-              <div className="rot">Anos de experiência</div>
+              <div className="valor">
+                <CountUp to={23} duration={1.6} />
+              </div>
+              <div className="rot">Anos no setor moveleiro</div>
             </div>
             <div className="num-item">
-              <div className="valor">100%</div>
+              <div className="valor">
+                <CountUp to={100} suffix="%" duration={1.6} />
+              </div>
               <div className="rot">Projetos personalizados</div>
             </div>
           </div>
@@ -454,8 +576,8 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
 
       {/* 7 · CONTATO */}
       <section className="contato" id="contato">
-        <div className="wrap contato-grid">
-          <div className="contato-info">
+        <div className="wrap contato-grid t-stagger" data-reveal>
+          <div className={`contato-info ${linha(1)}`}>
             <span className="eyebrow">Contato</span>
             <h2>
               Seu ambiente não precisa continuar <em>do jeito que está</em>.
@@ -479,14 +601,20 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               </div>
             </div>
           </div>
-          <div>
+          <div className={linha(3)}>
             <form
               className="form"
               onSubmit={enviarFormulario}
             >
               {envio === "ok" ? (
                 <p className="form-ok" role="status">
-                  Recebi seus dados. Vou te chamar no WhatsApp em até 24 horas úteis.
+                  {/* transitions.dev success check */}
+                  <span className="t-success-check" data-state="in" aria-hidden="true">
+                    <svg viewBox="0 0 48 48" width="30" height="30" fill="none">
+                      <path d="M14 24l7 7 13-14" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </span>
+                  <span>Recebi seus dados. Vou te chamar no WhatsApp em até 24 horas úteis.</span>
                 </p>
               ) : null}
               <div>
@@ -501,9 +629,11 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
                 <label htmlFor="lp2-tipo">Tipo de projeto</label>
                 <select id="lp2-tipo" name="tipo" required defaultValue="">
                   <option value="" disabled>Selecione…</option>
+                  <option>Projeto de 1 ambiente</option>
                   <option>Residencial</option>
                   <option>Comercial</option>
                   <option>Consultoria</option>
+                  <option>Loja ou marcenaria</option>
                 </select>
               </div>
               <div>
@@ -512,7 +642,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
               </div>
               <label className="lgpd">
                 <input type="checkbox" required /> Autorizo o contato e concordo com a{" "}
-                <a href="#" style={{ textDecoration: "underline" }}>Política de Privacidade</a>.
+                <a href="/privacidade" target="_blank" rel="noopener" style={{ textDecoration: "underline" }}>Política de Privacidade</a>.
               </label>
               <button type="submit" className="btn btn-primary" style={{ justifyContent: "center" }} disabled={envio === "enviando"}>
                 {envio === "enviando" ? "Enviando…" : "Solicitar orçamento"}
@@ -541,6 +671,7 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
             <a href="#contato">Contato</a>
             <a href="/blog">Blog</a>
             <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="/privacidade">Privacidade</a>
           </nav>
           <small>© {new Date().getFullYear()} Renata Fidelis Design de Interiores</small>
         </div>
@@ -586,6 +717,8 @@ const css = `
 .lp2 a{color:inherit;text-decoration:none}
 .lp2 p,.lp2 span,.lp2 a,.lp2 li,.lp2 button,.lp2 input,.lp2 select,.lp2 textarea{font-family:var(--body)}
 .lp2 h1,.lp2 h2,.lp2 h3{font-family:var(--display)}
+/* BlurText (título) e CountUp (números) montam o texto em spans: herdam a fonte de título */
+.lp2 h1 span,.lp2 h1 em,.lp2 .valor span{font-family:inherit}
 .lp2 .wrap{max-width:1180px;margin:0 auto;padding:0 6vw}
 
 /* Eyebrow técnico (assinatura visual: rótulo de prancha) */
@@ -606,7 +739,10 @@ const css = `
 .lp2 .nav-cta:hover{background:var(--terracota-hover)}
 /* padding generoso = área de toque >=44px sem mudar o desenho do ícone */
 .lp2 .burger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:14px 12px;margin-right:-12px}
-.lp2 .burger span{width:24px;height:1.5px;background:var(--cacau)}
+.lp2 .burger span{width:24px;height:1.5px;background:var(--cacau);transition:transform var(--duration-fast) var(--ease-smooth-out),opacity var(--duration-quick) ease}
+.lp2 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.lp2 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.lp2 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
 /* Hero */
 .lp2 .hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:stretch;gap:4vw;max-width:1180px;margin:0 auto;padding:78px 6vw 0}
@@ -647,9 +783,13 @@ const css = `
 
 /* Portfólio */
 .lp2 .portfolio{background:var(--areia)}
-.lp2 .filtros{display:flex;gap:10px;margin-bottom:48px;flex-wrap:wrap}
-.lp2 .filtro{background:transparent;border:1px solid rgba(59,50,43,.25);color:var(--cacau);padding:10px 26px;border-radius:24px;font-size:13px;letter-spacing:.05em;cursor:pointer;transition:all .25s}
-.lp2 .filtro.ativo,.lp2 .filtro:hover{background:var(--cacau);color:var(--linho);border-color:var(--cacau)}
+/* Filtro: segmented control com pílula deslizante (transitions.dev tabs sliding) */
+.lp2 .filtros-wrap{margin-bottom:48px;max-width:100%;overflow-x:auto;scrollbar-width:none}
+.lp2 .filtros-wrap::-webkit-scrollbar{display:none}
+.lp2 .filtros{--tabs-bar-bg:transparent;--tabs-pill-bg:var(--cacau);--tabs-text-muted:var(--taupe);--tabs-text-active:var(--linho);padding:4px;gap:2px;border:1px solid rgba(59,50,43,.22)}
+.lp2 .filtro{height:42px;padding:0 24px;font-size:13px;letter-spacing:.05em;white-space:nowrap;font-weight:500}
+.lp2 .filtro:not([aria-selected="true"]):hover{color:var(--cacau)}
+.lp2 .filtros .t-tabs-pill{top:4px;height:42px}
 .lp2 .grid-proj{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .lp2 .card{position:relative;border-radius:2px;overflow:hidden;cursor:pointer;aspect-ratio:4/5}
 .lp2 .card .ph{position:absolute;inset:0;background-color:#B49A7E;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
@@ -665,6 +805,11 @@ const css = `
 .lp2 .grid-serv{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .lp2 .serv{background:var(--branco);border:1px solid rgba(59,50,43,.08);border-radius:2px;padding:42px 34px;transition:transform .3s,box-shadow .3s}
 .lp2 .serv:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(59,50,43,.08)}
+/* .serv tem transition própria: recompõe o reveal (texts reveal) e o atraso de cada card */
+.lp2 .grid-serv .serv{transition:opacity var(--stagger-dur) var(--stagger-ease),transform var(--stagger-dur) var(--stagger-ease),filter var(--stagger-dur) var(--stagger-ease),box-shadow .3s}
+.lp2 .grid-serv .serv.t-stagger-line--3{transition-delay:calc(var(--stagger-stagger) * 2)}
+.lp2 .grid-serv .serv.t-stagger-line--5{transition-delay:calc(var(--stagger-stagger) * 4)}
+.lp2 .grid-serv.is-shown .serv:hover{transition-delay:0s}
 .lp2 .serv .ico{width:44px;height:44px;border:1px solid var(--bronze);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:26px;color:var(--bronze)}
 .lp2 .serv h3{font-weight:500;font-size:22px;margin-bottom:12px}
 .lp2 .serv p{color:var(--taupe);font-size:14.5px;font-weight:300}
@@ -715,7 +860,7 @@ const css = `
 .lp2 .depo .quem small{color:var(--taupe);font-size:12.5px}
 .lp2 .numeros{display:flex;gap:70px;margin-top:70px;flex-wrap:wrap;justify-content:center}
 .lp2 .num-item{text-align:center}
-.lp2 .num-item .valor{font-family:var(--display);font-size:46px;font-weight:400;color:var(--terracota)}
+.lp2 .num-item .valor{font-family:var(--display);font-size:46px;font-weight:400;color:var(--terracota);font-variant-numeric:tabular-nums}
 .lp2 .num-item .rot{font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-top:4px}
 
 /* Contato */
@@ -727,7 +872,8 @@ const css = `
 .lp2 .form input,.lp2 .form select,.lp2 .form textarea{width:100%;padding:14px 16px;border:1px solid rgba(59,50,43,.18);border-radius:2px;background:var(--linho);font-size:16px;color:var(--cacau);transition:border-color .25s}
 .lp2 .form input:focus,.lp2 .form select:focus,.lp2 .form textarea:focus{outline:2px solid transparent;border-color:var(--terracota)}
 .lp2 .form textarea{resize:vertical;min-height:96px}
-.lp2 .form-ok{background:var(--linho);border-left:3px solid var(--terracota);padding:14px 16px;margin:0;font-size:15px}
+.lp2 .form-ok{display:flex;align-items:center;gap:14px;background:var(--linho);border-left:3px solid var(--terracota);padding:14px 16px;margin:0;font-size:15px}
+.lp2 .form-ok .t-success-check{color:var(--terracota);flex-shrink:0}
 .lp2 .lgpd{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--taupe);text-transform:none;letter-spacing:normal}
 .lp2 .lgpd input{width:18px;height:18px;min-width:18px;padding:0;margin-top:2px;accent-color:var(--terracota)}
 .lp2 .ou{display:flex;align-items:center;gap:16px;color:var(--taupe);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin:16px 0 0}
@@ -747,7 +893,7 @@ const css = `
 .lp2 .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
 .lp2 .foot .logo{color:var(--linho)}
 .lp2 .foot small{font-size:12.5px;font-weight:300}
-.lp2 .foot nav{display:flex;gap:26px;font-size:13px}
+.lp2 .foot nav{display:flex;flex-wrap:wrap;gap:8px 26px;font-size:13px}
 .lp2 .foot nav a{display:inline-block;padding:12px 0;margin:-12px 0}
 .lp2 .foot nav a:hover{color:var(--linho)}
 
@@ -767,8 +913,8 @@ const css = `
   .lp2 .grid-proj,.lp2 .grid-serv,.lp2 .depo-grid{grid-template-columns:1fr 1fr}
   .lp2 .passos{grid-template-columns:1fr 1fr}
   .lp2 .passo{border-right:none;border-bottom:1px solid rgba(244,238,228,.16);padding:32px 0 26px}
-  .lp2 .nav-links{position:fixed;inset:78px 0 auto 0;background:var(--linho);flex-direction:column;padding:20px 6vw 32px;gap:6px;border-bottom:1px solid rgba(59,50,43,.1);transform:translateY(-130%);transition:transform .35s;align-items:stretch}
-  .lp2 .nav-links.open{transform:translateY(0)}
+  .lp2 .nav-links{position:fixed;inset:78px 0 auto 0;background:var(--linho);flex-direction:column;padding:20px 6vw 32px;gap:6px;border-bottom:1px solid rgba(59,50,43,.1);transform:translateY(-130%);transition:transform var(--duration-medium) var(--ease-smooth-out);align-items:stretch}
+  .lp2 .nav-links.open{transform:translateY(0);transition-duration:var(--duration-slow)}
   .lp2 .nav-links li{width:100%}
   .lp2 .nav-links a:not(.nav-cta){display:block;padding:13px 0;font-size:15px}
   .lp2 .nav-cta{display:inline-block;margin-top:14px;text-align:center;padding:15px 24px}
@@ -781,6 +927,7 @@ const css = `
   .lp2 .umamb-ficha{padding:30px 22px}
   .lp2 .lojas{padding:64px 0}
   .lp2 .numeros{gap:36px}
+  .lp2 .filtro{padding:0 12px;font-size:12.5px;letter-spacing:.02em}
 }
 @media(prefers-reduced-motion:reduce){
   .lp2 *{transition:none!important;animation:none!important}

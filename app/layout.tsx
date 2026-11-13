@@ -24,7 +24,7 @@ const GTM_ID = "GTM-5639SFHZ";
 
 const title = "Designer de Interiores em Feira de Santana | Renata Fidelis";
 const description =
-  "Projetos de interiores em Feira de Santana e online para todo o Brasil. Mais de 20 anos desenhando móveis e ambientes, com projeto em 3D pronto para a marcenaria.";
+  "Projetos de interiores em Feira de Santana e online para todo o Brasil. São 23 anos desenhando móveis e ambientes, com projeto em 3D pronto para a marcenaria.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

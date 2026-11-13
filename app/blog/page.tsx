@@ -20,7 +20,7 @@ export default function Blog() {
       <p className="rotulo">Blog</p>
       <h1>Projeto de interiores, do desenho à marcenaria</h1>
       <p>
-        O que eu aprendi em mais de 20 anos desenhando móveis e ambientes, para você decidir com
+        O que eu aprendi em 23 anos desenhando móveis e ambientes, para você decidir com
         mais segurança antes de chamar o marceneiro.
       </p>
       {posts.length ? (
