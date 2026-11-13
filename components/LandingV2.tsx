@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WA_MSG, waLink } from "@/lib/constants";
 import { enviarAoHub, type Contato } from "@/lib/hub";
@@ -139,15 +140,14 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
             <a href="#projetos" className="btn btn-ghost">Ver projetos</a>
           </div>
         </div>
-        <div
-          className="hero-visual"
-          role="img"
-          aria-label="Projeto em destaque: living integrado assinado por Renata Fidelis"
-          style={{
-            backgroundImage:
-              "linear-gradient(135deg, rgba(59,50,43,.35), rgba(59,50,43,0) 45%), url('/images/hero.webp')",
-          }}
-        >
+        <div className="hero-visual">
+          <Image
+            src="/images/hero.webp"
+            alt="Living integrado com mesa de jantar em madeira e cristaleira iluminada, projeto de interiores de Renata Fidelis"
+            fill
+            preload
+            sizes="(max-width: 960px) 100vw, 45vw"
+          />
           <span className="hero-scroll">Role para explorar</span>
           <div className="hero-tag">
             <span className="num">Prancha 01 · Living integrado</span>
@@ -158,12 +158,14 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
       {/* 2 · ASSINATURA / BIO */}
       <section className="assinatura" id="sobre">
         <div className="wrap assinatura-grid">
-          <div
-            className="retrato"
-            role="img"
-            aria-label="Retrato de Renata Fidelis"
-            style={{ backgroundImage: "url('/images/renata.webp')" }}
-          />
+          <div className="retrato">
+            <Image
+              src="/images/renata.webp"
+              alt="Renata Fidelis, designer de interiores em Feira de Santana"
+              fill
+              sizes="(max-width: 960px) 100vw, 40vw"
+            />
+          </div>
           <div>
             <span className="eyebrow">A assinatura</span>
             <p className="quote">
@@ -217,12 +219,14 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
                 className="card"
                 style={{ display: filtro === "todos" || filtro === p.cat ? undefined : "none" }}
               >
-                <div
-                  className="ph"
-                  role="img"
-                  aria-label={`${p.nome}: ${p.descricao}`}
-                  style={{ backgroundImage: `url('${p.img}')` }}
-                />
+                <div className="ph">
+                  <Image
+                    src={p.img}
+                    alt={`${p.nome}: ${p.descricao.toLowerCase()}, projeto de Renata Fidelis`}
+                    fill
+                    sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+                  />
+                </div>
                 <div className="info">
                   <small>{p.descricao}</small>
                   <h3>{p.nome}</h3>
@@ -616,10 +620,12 @@ const css = `
 .lp2 .btn-primary:hover{background:var(--terracota-hover);transform:translateY(-1px)}
 .lp2 .btn-ghost{border-color:var(--cacau);color:var(--cacau);background:transparent}
 .lp2 .btn-ghost:hover{background:var(--cacau);color:var(--linho)}
-.lp2 .hero-visual{position:relative;margin:48px 0;background-size:cover;background-position:center;background-color:#A98D6F}
-.lp2 .hero-tag{position:absolute;left:34px;bottom:34px;color:var(--branco);text-shadow:0 1px 8px rgba(43,34,27,.5)}
+.lp2 .hero-visual{position:relative;margin:48px 0;background-color:#A98D6F;overflow:hidden}
+.lp2 .hero-visual img{object-fit:cover}
+.lp2 .hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,50,43,.35),rgba(59,50,43,0) 45%);pointer-events:none}
+.lp2 .hero-tag{position:absolute;z-index:1;left:34px;bottom:34px;color:var(--branco);text-shadow:0 1px 8px rgba(43,34,27,.5)}
 .lp2 .hero-tag .num{font-family:var(--display);font-size:15px;font-style:italic;opacity:.9}
-.lp2 .hero-scroll{position:absolute;left:34px;top:110px;writing-mode:vertical-rl;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:rgba(253,251,247,.8);text-shadow:0 1px 6px rgba(43,34,27,.5)}
+.lp2 .hero-scroll{position:absolute;z-index:1;left:34px;top:110px;writing-mode:vertical-rl;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:rgba(253,251,247,.8);text-shadow:0 1px 6px rgba(43,34,27,.5)}
 
 /* Seções */
 .lp2 section{padding:110px 0}
@@ -631,7 +637,8 @@ const css = `
 /* Assinatura / bio */
 .lp2 .assinatura{background:var(--linho)}
 .lp2 .assinatura-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
-.lp2 .retrato{aspect-ratio:4/5;background-size:cover;background-position:center top;background-color:#B49A7E;border-radius:2px}
+.lp2 .retrato{position:relative;overflow:hidden;aspect-ratio:4/5;background-color:#B49A7E;border-radius:2px}
+.lp2 .retrato img{object-fit:cover;object-position:center top}
 .lp2 .quote{font-family:var(--display);font-size:clamp(24px,2.6vw,33px);font-weight:400;line-height:1.35;font-style:italic;margin-bottom:28px}
 .lp2 .assinatura-grid p{color:var(--taupe);font-weight:300;margin-bottom:16px}
 .lp2 .quote{color:var(--cacau)}
@@ -645,8 +652,9 @@ const css = `
 .lp2 .filtro.ativo,.lp2 .filtro:hover{background:var(--cacau);color:var(--linho);border-color:var(--cacau)}
 .lp2 .grid-proj{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
 .lp2 .card{position:relative;border-radius:2px;overflow:hidden;cursor:pointer;aspect-ratio:4/5}
-.lp2 .card .ph{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.lp2 .card .ph{position:absolute;inset:0;background-color:#B49A7E;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .lp2 .card:hover .ph{transform:scale(1.045)}
+.lp2 .card .ph img{object-fit:cover}
 .lp2 .card .info{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(0deg,rgba(43,34,27,.78),rgba(43,34,27,0));color:var(--branco)}
 .lp2 .card .info small{font-size:10px;letter-spacing:.25em;text-transform:uppercase;opacity:.8}
 .lp2 .card .info h3{font-weight:400;font-size:20px;margin-top:4px}
