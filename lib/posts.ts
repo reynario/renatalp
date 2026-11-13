@@ -118,11 +118,120 @@ export const posts: Post[] = [
       },
     ],
   },
+  {
+    slug: "projeto-de-interiores-online",
+    titulo: "Projeto de interiores online: como funciona e o que você recebe em 24 horas",
+    descricao:
+      "Veja como funciona o projeto de interiores online: o que enviar, o que você recebe e o prazo de 24 horas para 1 ambiente. A partir de R$ 497.",
+    palavraChave: "projeto de interiores online",
+    publicadoEm: "2026-11-19",
+    publicado: true,
+    introducao: [
+      "Muita gente acha que projeto de interiores online é um projeto pela metade, feito sem conhecer a casa. Não é. Quando o processo é bem conduzido, você recebe o mesmo material de um atendimento presencial, sem depender de agenda de visita e morando em qualquer cidade.",
+      "Neste artigo eu explico como funciona o meu atendimento online, o que você precisa me enviar, o que recebe de volta e em quanto tempo.",
+      "Sou a Renata Fidelis, designer de interiores e projetista de móveis planejados em Feira de Santana. São 23 anos dentro da marcenaria e mais de 1.000 ambientes projetados, boa parte deles para clientes e lojas de outras cidades, sempre à distância.",
+    ],
+    secoes: [
+      {
+        titulo: "O que é um projeto de interiores online",
+        paragrafos: [
+          "É o projeto completo do seu ambiente, feito a partir das informações que você envia: medidas, fotos e uma conversa sobre a sua rotina. A diferença para o presencial está só em quem mede o espaço. No online, você mede com a minha orientação.",
+          "O resultado é o mesmo. Você recebe a planta com a distribuição dos móveis, as imagens em 3D que mostram o ambiente pronto e o detalhamento técnico que o marceneiro usa para orçar e fabricar.",
+        ],
+      },
+      {
+        titulo: "O que você precisa me enviar",
+        paragrafos: [
+          "Quanto melhor a informação, mais fiel o projeto fica à sua casa. Eu peço quatro coisas.",
+          "1. As medidas do ambiente: largura, comprimento e pé-direito, além da posição de portas, janelas, tomadas e pontos de água.",
+          "2. Fotos de todos os lados do cômodo, com boa luz.",
+          "3. A lista do que precisa caber ali: eletrodomésticos com modelo, móveis que ficam e o que você quer guardar.",
+          "4. Referências do que você gosta e, tão importante quanto, do que não gosta.",
+          "Não precisa chegar com tudo pronto. Se tiver dúvida de como medir, eu explico o passo a passo pelo WhatsApp. Uma trena e vinte minutos resolvem a maioria dos ambientes.",
+        ],
+      },
+      {
+        titulo: "Como é a conversa inicial",
+        paragrafos: [
+          "Antes de desenhar, eu preciso entender como você vive. Quem mora na casa, quem cozinha, onde cada um trabalha ou estuda, o que incomoda hoje e o que você quer sentir ao entrar no ambiente.",
+          "Essa conversa acontece pelo WhatsApp, por mensagem ou por chamada, no horário que funcionar para você. É nela que o projeto deixa de ser um desenho bonito e passa a ser a solução para a sua rotina.",
+        ],
+      },
+      {
+        titulo: "O que você recebe",
+        paragrafos: [
+          "O projeto de 1 ambiente chega com três entregas.",
+          "A primeira é a planta com o layout: onde fica cada móvel, as medidas de circulação e a posição dos pontos elétricos que o projeto pede.",
+          "A segunda são as imagens em 3D, chamadas de renders. Elas mostram o ambiente pronto, com cores, materiais e iluminação. É o momento de ver, antes de gastar, se o resultado é o que você imagina.",
+          "A terceira é o detalhamento da marcenaria: os desenhos técnicos com divisões internas, portas, gavetas, ferragens e acabamentos. Com ele, você pede orçamento a mais de um marceneiro e compara propostas iguais.",
+          "Junto com o projeto vem a orientação das escolhas do ambiente: cor de parede, piso, bancada e iluminação. O olhar é o seu, do que funciona para a sua casa, e não o de quem precisa vender um produto.",
+        ],
+      },
+      {
+        titulo: "Em quanto tempo fica pronto",
+        paragrafos: [
+          "O projeto de 1 ambiente é entregue em 24 horas. O prazo conta a partir do momento em que tenho as medidas, as fotos e a conversa inicial feita.",
+          "O projeto do imóvel completo é entregue em 7 dias.",
+          "Consigo trabalhar com esses prazos porque passei 23 anos desenhando móveis planejados todos os dias. O processo já está organizado para que nada dependa de idas e vindas.",
+        ],
+      },
+      {
+        titulo: "Quanto custa",
+        paragrafos: [
+          "O projeto de 1 ambiente começa a partir de R$ 497. O imóvel completo começa a partir de R$ 3.000. O valor final depende do tamanho do espaço e da quantidade de marcenaria, e você recebe o valor fechado antes de começar.",
+          "Expliquei os valores com mais detalhe no artigo [quanto custa um projeto de interiores](/blog/quanto-custa-projeto-de-interiores).",
+        ],
+      },
+      {
+        titulo: "O marceneiro da minha cidade consegue executar?",
+        paragrafos: [
+          "Consegue. O detalhamento é feito na linguagem da marcenaria, com as medidas e as especificações que qualquer profissional usa para cortar e montar. Você não fica preso a uma loja ou a um fornecedor.",
+          "Se o marceneiro tiver dúvida durante a execução, ele pode falar comigo. Projeto bom é o que sai do papel sem retrabalho.",
+        ],
+      },
+      {
+        titulo: "Conclusão",
+        paragrafos: [
+          "Projeto de interiores online funciona quando três coisas estão bem feitas: as medidas, a conversa sobre a rotina e o detalhamento para a marcenaria. Com isso, a distância deixa de ser um problema.",
+          "Comigo, o projeto de 1 ambiente começa a partir de R$ 497, com entrega em 24 horas, para qualquer cidade do Brasil. Você pode conhecer o formato do [projeto de 1 ambiente](/#um-ambiente) na página inicial.",
+        ],
+      },
+    ],
+    perguntas: [
+      {
+        pergunta: "Projeto de interiores online funciona de verdade?",
+        resposta:
+          "Sim. Com as medidas, as fotos e uma conversa sobre a rotina da casa, o projeto sai com planta, imagens em 3D e detalhamento, como no atendimento presencial.",
+      },
+      {
+        pergunta: "Preciso contratar alguém para medir o ambiente?",
+        resposta: "Não. Você mesmo mede com uma trena, com a minha orientação pelo WhatsApp.",
+      },
+      {
+        pergunta: "Em quanto tempo recebo o projeto?",
+        resposta:
+          "O projeto de 1 ambiente é entregue em 24 horas depois do envio das informações. O imóvel completo, em 7 dias.",
+      },
+      {
+        pergunta: "Posso usar o marceneiro da minha cidade?",
+        resposta: "Sim. O detalhamento sai pronto para qualquer marceneiro orçar e fabricar.",
+      },
+    ],
+  },
 ];
 
+// Data de hoje no fuso de Feira de Santana, no momento do build. Artigo com
+// publicadoEm no futuro fica fora do site até um build nesse dia ou depois.
+// BLOG_HOJE=AAAA-MM-DD força a data (para conferir antes).
+function hoje(): string {
+  if (process.env.BLOG_HOJE) return process.env.BLOG_HOJE;
+  return new Date().toLocaleDateString("en-CA", { timeZone: "America/Bahia" });
+}
+
 export function postsPublicados(): Post[] {
+  const h = hoje();
   return posts
-    .filter((p) => p.publicado)
+    .filter((p) => p.publicado && p.publicadoEm <= h)
     .sort((a, b) => b.publicadoEm.localeCompare(a.publicadoEm));
 }
 
