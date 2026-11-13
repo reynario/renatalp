@@ -18,6 +18,7 @@ export const WA_MSG = {
   umAmbiente: "Olá, Renata! Vim pelo site e quero saber mais sobre o projeto de 1 ambiente.",
   lojas: "Olá, Renata! Vim pelo site. Tenho uma loja ou marcenaria e quero saber sobre os projetos online.",
   blog: "Olá, Renata! Li um artigo no seu site e gostaria de conversar sobre o meu espaço.",
+  projetoObra: "Olá, Renata! Vi no site a cozinha do projeto à obra e quero conversar sobre o meu ambiente.",
 } as const;
 
 export const INSTAGRAM_URL = "https://www.instagram.com/renatafidelis80/";

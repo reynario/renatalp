@@ -6,6 +6,7 @@ import { EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, WA_MSG, waLink } from "@/lib/co
 import { enviarAoHub, type Contato } from "@/lib/hub";
 import BlurText from "@/components/reactbits/BlurText";
 import CountUp from "@/components/reactbits/CountUp";
+import ProjetoObra from "@/components/ProjetoObra";
 
 // Classe de linha do texts reveal (transitions.dev) com atraso escalonado de 1 a 6.
 const linha = (n: number) => `t-stagger-line t-stagger-line--${Math.min(Math.max(n, 1), 6)}`;
@@ -356,6 +357,9 @@ export default function LandingV2({ fontVars }: { fontVars: string }) {
           </div>
         </div>
       </section>
+
+      {/* 3B · DO PROJETO À OBRA */}
+      <ProjetoObra />
 
       {/* 4 · SERVIÇOS */}
       <section className="servicos" id="servicos">
