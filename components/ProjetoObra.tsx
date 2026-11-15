@@ -176,7 +176,7 @@ const css = `
   .lp2 .po-mob{display:block;position:relative;aspect-ratio:4/3;margin:20px 0 0;background:#FDFBF7;border:1px solid rgba(59,50,43,.1);border-radius:2px;overflow:hidden}
   .lp2 .po-mob img{object-fit:cover}
   .lp2 .po-mob.prancha img{object-fit:contain;padding:8px}
-  .lp2 .po-mob figcaption{position:absolute;left:12px;bottom:12px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;background:rgba(253,251,247,.92);color:var(--cacau);padding:6px 10px;border-radius:2px}
+  .lp2 .po-mob figcaption{position:absolute;left:12px;bottom:12px;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;background:rgba(253,251,247,.92);color:var(--cacau);padding:6px 10px;border-radius:2px}
   .lp2 .po-fim{padding:0}
 }
 @media(prefers-reduced-motion:reduce){

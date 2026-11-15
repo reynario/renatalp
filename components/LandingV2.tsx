@@ -701,7 +701,8 @@ const css = `
   --linho:#F4EEE4;
   --areia:#E4D8C7;
   --cacau:#3B322B;
-  --taupe:#8C7B6B;
+  --taupe:#6B5C4E;
+  --bronze-txt:#7A5836;
   --terracota:#B5623C;
   --terracota-hover:#9E5231;
   --bronze:#A67C52;
@@ -726,7 +727,7 @@ const css = `
 .lp2 .wrap{max-width:1180px;margin:0 auto;padding:0 6vw}
 
 /* Eyebrow técnico (assinatura visual: rótulo de prancha) */
-.lp2 .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--bronze);font-weight:500;margin-bottom:22px}
+.lp2 .eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--bronze-txt);font-weight:500;margin-bottom:22px}
 .lp2 .eyebrow::before{content:'';width:38px;height:1px;background:var(--bronze)}
 
 /* Header */
@@ -765,7 +766,7 @@ const css = `
 .lp2 .hero-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,50,43,.35),rgba(59,50,43,0) 45%);pointer-events:none}
 .lp2 .hero-tag{position:absolute;z-index:1;left:34px;bottom:34px;color:var(--branco);text-shadow:0 1px 8px rgba(43,34,27,.5)}
 .lp2 .hero-tag .num{font-family:var(--display);font-size:15px;font-style:italic;opacity:.9}
-.lp2 .hero-scroll{position:absolute;z-index:1;left:34px;top:110px;writing-mode:vertical-rl;font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:rgba(253,251,247,.8);text-shadow:0 1px 6px rgba(43,34,27,.5)}
+.lp2 .hero-scroll{position:absolute;z-index:1;left:34px;top:110px;writing-mode:vertical-rl;font-size:11px;letter-spacing:.35em;text-transform:uppercase;color:rgba(253,251,247,.8);text-shadow:0 1px 6px rgba(43,34,27,.5)}
 
 /* Seções */
 .lp2 section{padding:110px 0}
@@ -800,7 +801,7 @@ const css = `
 .lp2 .card:hover .ph{transform:scale(1.045)}
 .lp2 .card .ph img{object-fit:cover}
 .lp2 .card .info{position:absolute;left:0;right:0;bottom:0;padding:22px;background:linear-gradient(0deg,rgba(43,34,27,.78),rgba(43,34,27,0));color:var(--branco)}
-.lp2 .card .info small{font-size:10px;letter-spacing:.25em;text-transform:uppercase;opacity:.8}
+.lp2 .card .info small{font-size:11.5px;letter-spacing:.25em;text-transform:uppercase;opacity:.8}
 .lp2 .card .info h3{font-weight:400;font-size:20px;margin-top:4px}
 .lp2 .ver-todos{margin-top:52px;text-align:center}
 
@@ -825,12 +826,12 @@ const css = `
 .lp2 .umamb-lead{color:var(--taupe);font-weight:300;margin-bottom:16px;max-width:520px}
 .lp2 .umamb .btn{margin-top:18px}
 .lp2 .umamb-ficha{background:var(--branco);border:1px solid rgba(59,50,43,.1);border-radius:2px;padding:40px 38px}
-.lp2 .ficha-rot{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--bronze);font-weight:500;padding-bottom:16px;border-bottom:1px solid var(--bronze);margin-bottom:22px}
+.lp2 .ficha-rot{display:block;font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--bronze-txt);font-weight:500;padding-bottom:16px;border-bottom:1px solid var(--bronze);margin-bottom:22px}
 .lp2 .umamb-ficha ul{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:12px}
 .lp2 .umamb-ficha li{position:relative;padding-left:22px;font-size:15px;color:var(--cacau)}
 .lp2 .umamb-ficha li::before{content:'';position:absolute;left:0;top:.72em;width:10px;height:1px;background:var(--bronze)}
 .lp2 .ficha-dados{display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:24px 0;border-top:1px solid rgba(59,50,43,.12);border-bottom:1px solid rgba(59,50,43,.12)}
-.lp2 .ficha-dados small{display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);margin-bottom:6px}
+.lp2 .ficha-dados small{display:block;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);margin-bottom:6px}
 .lp2 .ficha-dados b{display:block;font-family:var(--display);font-weight:400;font-size:24px;line-height:1.2;color:var(--cacau)}
 .lp2 .ficha-dados span{display:block;font-size:12.5px;color:var(--taupe);margin-top:4px}
 .lp2 .ficha-nota{font-size:13.5px;color:var(--taupe);font-weight:300;margin-top:20px}
@@ -887,7 +888,7 @@ const css = `
 .lp2 .contato-info h2{margin-bottom:20px}
 .lp2 .contato-info>p{color:var(--taupe);font-weight:300;margin-bottom:34px;max-width:420px}
 .lp2 .dados{display:grid;gap:22px}
-.lp2 .dado small{font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);display:block;margin-bottom:4px}
+.lp2 .dado small{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze-txt);display:block;margin-bottom:4px}
 /* padding com margin negativa amplia o toque sem alterar o espaçamento */
 .lp2 .dado a{display:inline-block;font-family:var(--display);font-size:19px;transition:color .25s;padding:10px 0;margin:-10px 0}
 .lp2 .dado a:hover{color:var(--terracota)}
