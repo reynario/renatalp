@@ -218,6 +218,115 @@ export const posts: Post[] = [
       },
     ],
   },
+  {
+    slug: "projeto-de-cozinha-planejada",
+    titulo: "Projeto de cozinha planejada: o que definir antes de chamar o marceneiro",
+    descricao: "Projeto de cozinha planejada: medidas dos eletrodomésticos, torre quente, ilha, tomadas e coifa. Veja o que definir antes de chamar o marceneiro.",
+    palavraChave: "projeto de cozinha planejada",
+    publicadoEm: "2026-11-17",
+    publicado: true,
+    introducao: [
+      "Um bom projeto de cozinha planejada começa muito antes do primeiro orçamento de marcenaria. Ele começa quando você decide o que precisa caber, como você cozinha e por onde você circula no dia a dia.",
+      "A cozinha é o ambiente com mais detalhes técnicos da casa. Tem água, gás, calor, eletricidade e muitos aparelhos. Por isso, é também onde um erro de medida mais aparece e mais custa para corrigir.",
+      "Sou a Renata Fidelis, designer de interiores e projetista de móveis planejados em Feira de Santana, com 23 anos de marcenaria. Neste artigo, reúno o que eu defino com cada cliente antes de o marceneiro tirar a primeira medida."
+    ],
+    secoes: [
+      {
+        titulo: "As medidas dos eletrodomésticos vêm primeiro",
+        paragrafos: [
+          "Muita gente escolhe o armário e depois tenta encaixar a geladeira. O caminho certo é o inverso.",
+          "Cada eletrodoméstico tem uma ficha técnica, o documento do fabricante com as dimensões do aparelho e o espaço que ele precisa em volta para ventilar e abrir a porta. É essa ficha que define o tamanho dos nichos, e não uma medida padrão.",
+          "Por isso, eu peço a lista completa antes de desenhar: geladeira, fogão ou cooktop, forno, micro-ondas, lava-louças, depurador ou coifa. Se você ainda vai comprar algum, vale escolher o modelo antes do projeto, ou ao menos a faixa de tamanho.",
+          "Quando falamos em medidas de cozinha planejada, o erro mais comum é o nicho da geladeira. A pessoa troca de modelo depois do móvel pronto, e a nova não entra ou fica sem ventilação. Com a ficha técnica no projeto, esse risco cai muito.",
+          "Já vivi isso em um projeto. A cliente tinha escolhido uma geladeira duplex de 82 cm de largura, e eu deixei um espaço de 95 cm, já contando a ventilação e a abertura da porta. A cozinha estava praticamente pronta, com móveis planejados, bancadas de pedra, revestimentos e pontos elétricos instalados.",
+          "Sem me avisar, ela comprou uma geladeira side by side, acreditando que caberia no mesmo espaço. O aparelho entrou, mas a porta batia na parede, não abria por completo e as gavetas não saíam.",
+          "Para resolver, foi preciso desmontar parte dos móveis, refazer o armário superior, reduzir 50 cm da bancada da ilha, criar uma despensa vertical e mudar a tomada de lugar. A cozinha ficou pronta para a geladeira nova, mas com retrabalho, custo extra e atraso na obra.",
+          "A lição é que não basta o eletrodoméstico caber no espaço. Ele precisa de ventilação e de folga para a porta abrir inteira. E qualquer troca de modelo durante a obra deve passar pelo profissional responsável antes da compra."
+        ]
+      },
+      {
+        titulo: "Torre quente, pia e cooktop: a ordem que poupa passos",
+        paragrafos: [
+          "Torre quente é a coluna de armário onde ficam o forno e o micro-ondas, um sobre o outro, na altura das mãos. Ela evita que você precise se abaixar para tirar uma assadeira do forno.",
+          "A posição dela faz toda a diferença. Eu defendo a torre quente longe da pia e perto da bancada de preparo. Assim, você tira a travessa quente e apoia logo ao lado, sem atravessar a cozinha com ela nas mãos.",
+          "Esse cuidado poupa as costas e deixa a rotina mais segura. Também evita que o vapor e o calor fiquem perto da área molhada.",
+          "A lógica geral da cozinha segue o caminho dos alimentos. Primeiro você guarda, depois lava, depois prepara e por fim cozinha. Quando geladeira, pia, bancada e cooktop seguem essa sequência, você dá menos passos e cozinha com mais conforto.",
+          "Entre a pia e o cooktop, o ideal é ter uma bancada livre para cortar e montar os pratos. É ali que a cozinha realmente acontece."
+        ]
+      },
+      {
+        titulo: "Ilha ou península: quando cada uma funciona",
+        paragrafos: [
+          "A cozinha planejada com ilha é um desejo frequente. Ilha é uma bancada solta no meio do ambiente, com acesso pelos quatro lados. Península é uma bancada presa à parede ou ao armário por uma das pontas.",
+          "A ilha funciona bem quando há espaço para circular confortavelmente em volta dela. Ela pode receber o cooktop, a pia ou servir apenas como área de apoio e refeições rápidas.",
+          "A península costuma ser a melhor solução em cozinhas mais estreitas ou integradas à sala. Ela entrega bancada extra e lugar para sentar, sem fechar a passagem.",
+          "A pergunta que eu faço é: quantas pessoas usam a cozinha ao mesmo tempo? Se for comum ter duas ou mais cozinhando juntas, a circulação precisa ser pensada com ainda mais cuidado.",
+          "Se a ilha receber cooktop ou pia, o projeto precisa prever a passagem de água, esgoto, gás e energia pelo piso. Isso é decidido antes da obra, não depois."
+        ]
+      },
+      {
+        titulo: "Tomadas, coifa e duto: o que costuma ser esquecido",
+        paragrafos: [
+          "Algumas decisões parecem pequenas e acabam sendo as mais difíceis de corrigir.",
+          "A primeira são as tomadas. É comum o marceneiro instalar o módulo e a tomada ficar escondida atrás dele. No projeto, cada ponto elétrico é marcado no lugar certo: para os aparelhos embutidos, para a bancada e para os eletroportáteis do dia a dia.",
+          "A segunda é a coifa. Coifa é o equipamento sobre o cooktop que puxa a fumaça e a gordura. Quando ela tem saída para fora, precisa de um duto, que é o tubo que leva o ar até o exterior.",
+          "Muitas vezes, o armário aéreo é desenhado sem espaço para esse duto passar. O resultado é um armário cortado na obra ou uma coifa instalada de forma improvisada. Prever o caminho do duto no projeto resolve isso.",
+          "A terceira é a abertura das portas. Uma porta de armário que bate no puxador vizinho, na geladeira ou na parede incomoda todos os dias. No projeto, eu confiro o giro de cada porta e de cada gaveta, especialmente nos cantos."
+        ]
+      },
+      {
+        titulo: "Materiais: MDF, ferragens e bancada",
+        paragrafos: [
+          "O MDF é a chapa de madeira reconstituída usada na maior parte dos móveis planejados. Ele vem com diferentes acabamentos e padrões, e cada um tem um comportamento na limpeza e no dia a dia. Na cozinha, que tem umidade e gordura, a escolha do acabamento merece atenção.",
+          "As ferragens são as dobradiças, corrediças de gaveta e sistemas de abertura. São elas que fazem a porta fechar com suavidade e a gaveta deslizar com peso dentro. Uma marcenaria bonita com ferragem fraca perde qualidade rápido.",
+          "A bancada é a superfície de trabalho, normalmente em pedra natural ou material industrializado. Ela define a altura de uso, a instalação da pia e do cooktop e boa parte da estética da cozinha.",
+          "No projeto, esses três itens são escolhidos juntos. A cor do MDF conversa com a bancada, e as ferragens são indicadas de acordo com o peso e o uso de cada módulo.",
+          "A iluminação embutida entra na mesma conta. Na cozinha, é comum ter fita de LED sob os armários aéreos ou dentro dos nichos. E aqui o barato pode sair muito caro.",
+          "Em um dos meus projetos, já na fase final da instalação dos móveis, orientei o cliente sobre a compra das fitas de LED e indiquei fornecedores de confiança. Como o orçamento estava apertado, ele comprou um material muito mais barato, de procedência duvidosa.",
+          "As fitas foram instaladas e tudo parecia funcionar bem. No fim do ano, a família viajou e, na volta, encontrou parte do painel da sala de TV queimada, com sinais de um princípio de incêndio.",
+          "Foi preciso trocar o painel, desmontar móveis para retirar todas as fitas da casa, revisar a instalação elétrica e recuperar a pintura danificada. O que parecia economia virou um prejuízo muito maior, além do risco para a família.",
+          "Por isso, no projeto, eu indico o material e o fornecedor da iluminação junto com o MDF e as ferragens. Qualidade de material e de instalação não é luxo. É segurança."
+        ]
+      },
+      {
+        titulo: "O que o marceneiro precisa receber",
+        paragrafos: [
+          "Quando o projeto de cozinha planejada está pronto, o marceneiro deve receber um material que não deixe espaço para adivinhação.",
+          "Isso inclui:",
+          "1. Planta com as medidas reais do ambiente, conferidas no local.",
+          "2. Lista dos eletrodomésticos com modelo e ficha técnica.",
+          "3. Detalhamento de cada módulo: portas, gavetas, prateleiras e divisões internas.",
+          "4. Posição de tomadas, pontos de água, esgoto e gás.",
+          "5. Caminho do duto da coifa, quando houver.",
+          "6. Especificação do MDF, das ferragens e da bancada.",
+          "7. Imagens em 3D para mostrar como a cozinha deve ficar.",
+          "Com esse material, você também pode pedir orçamento a mais de um marceneiro e comparar propostas iguais. Se quiser entender os valores e prazos do projeto, eu explico em [quanto custa um projeto de interiores](/blog/quanto-custa-projeto-de-interiores)."
+        ]
+      },
+      {
+        titulo: "Conclusão",
+        paragrafos: [
+          "Um projeto de cozinha planejada bem feito é aquele que resolve tudo no papel. As medidas dos eletrodomésticos vêm primeiro, a torre quente fica no lugar que poupa passos, a ilha ou a península respeita a circulação e nenhuma tomada fica escondida.",
+          "Assim, a marcenaria chega para executar, e não para improvisar. E você ganha uma cozinha que funciona do jeito que você cozinha.",
+          "Atendo em Feira de Santana e online, para todo o Brasil."
+        ]
+      }
+    ],
+    perguntas: [
+      {
+        pergunta: "O que é torre quente na cozinha planejada?",
+        resposta: "É a coluna de armário onde ficam forno e micro-ondas, um sobre o outro, na altura das mãos."
+      },
+      {
+        pergunta: "Preciso comprar os eletrodomésticos antes do projeto?",
+        resposta: "O ideal é ter os modelos definidos, porque a ficha técnica de cada um define o tamanho dos nichos."
+      },
+      {
+        pergunta: "Ilha ou península: qual é melhor?",
+        resposta: "A ilha pede espaço para circular em volta. A península costuma funcionar melhor em cozinhas estreitas ou integradas."
+      }
+    ]
+  }
 ];
 
 // Data de hoje no fuso de Feira de Santana, no momento do build. Artigo com
